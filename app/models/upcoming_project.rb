@@ -1,0 +1,2 @@
+class UpcomingProject < ApplicationRecord
+end

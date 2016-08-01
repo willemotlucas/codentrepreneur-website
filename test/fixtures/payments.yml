@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paymentable: one
+  paymentable_type: Paymentable
+  user: one
+
+two:
+  paymentable: two
+  paymentable_type: Paymentable
+  user: two

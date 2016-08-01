@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  order: 
+  created_at: 2016-07-31 20:09:26
+  updated_at: 2016-07-31 20:09:26
+  taskable: one
+  taskable_type: Taskable
+
+two:
+  title: MyString
+  description: MyText
+  order: 
+  created_at: 2016-07-31 20:09:26
+  updated_at: 2016-07-31 20:09:26
+  taskable: two
+  taskable_type: Taskable

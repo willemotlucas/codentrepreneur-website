@@ -1,0 +1,24 @@
+<section id="featured-project">
+	<div class="container">
+		<div class="row">
+			<div class="col col-sm-12">
+				<h1>La formation du moment</h1>
+				<div class="feature-card">
+					<div class="col col-lg-6 col-xs-12">
+						<img class="feature-card-image img-fluid" src="http://placehold.it/600x350" alt="" />
+						<span class="tag tag-default">Angular.js</span> <span class="tag tag-default">Ionic</span>  <span class="tag tag-default">Firebase</span> <span class="tag tag-default">Facebook API</span>
+					</div>
+					<div class="col col-lg-6 col-xs-12">
+						<div class="feature-card-block">
+							<h2 class="feature-card-title"><%= @featured_project.title %></h2>
+							<p class="feature-card-details"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @featured_project.duration %> de vidéos<i class="fa fa-calendar-check-o" aria-hidden="true"></i> <%= @featured_project.release_date %> <i class="fa fa-comments" aria-hidden="true"></i> Une communauté pour s'entraider</p>
+							<p class="feature-card-rating"><i class="fa fa-star fa-1w"></i><i class="fa fa-star fa-1w"></i><i class="fa fa-star fa-1w"></i><i class="fa fa-star fa-1w"></i><i class="fa fa-star-half-full fa-1w"></i> 4,5/5 - <a href="#" class="feature-card-link">Voir tous les avis</a></p>
+							<p class="feature-card-description text-justify"><%= @featured_project.short_description %></p>
+							<%= link_to "Plus de détails", preorder_project_path(@featured_project), class: "btn btn-outline-success" %> <a class="btn btn-success">Précommander</a>
+						</div>
+					</div>
+				</div>
+			</div>					
+		</div>
+	</div>
+</section>

@@ -1,0 +1,242 @@
+/*
+ * Common style
+*/
+@media(min-width: 1500px) {
+	.container {
+	    max-width: 1400px;
+	}
+}
+
+.row {
+	padding-top: 4%;
+	padding-bottom: 4%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding-bottom: 2%;
+	padding-top: 2%;
+}
+
+/*
+ * Navbar style
+*/
+a.btn-outline-success {
+	color: #2BDE73 !important;
+	border: 1px solid #2BDE73;
+}
+
+a.btn-outline-success:hover, a.btn-success {
+	color: #fff !important;
+	background-color: #2BDE73;
+	border-color: #2BDE73;
+}
+
+.btn-success:hover {
+	background-color: #54c254 !important;
+	border-color: #54c254;
+}
+
+#navbar {
+	background-color: transparent;
+	transition: all 0.4s ease;
+}
+
+#navbar .nav-link, #navbar .navbar-brand {
+	color: #fff !important;
+}
+
+#navbar.sticky {
+	width: 100%;
+	z-index: 9999;
+	position: fixed;
+	top: 0px;
+	background-color: #f7f7f9;
+	border-radius: 0px;
+	transition: all 0.4s ease;
+}
+
+#navbar.sticky .nav-link, #navbar.sticky .navbar-brand {
+	color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/*
+ * Header style
+*/ 
+header {
+	background-image: url(../images/bg.png);
+	margin-top: -54px;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6, header p {
+	color: #fff;
+}
+
+header .btn-lg {
+	margin-top: 5%;
+}
+
+header .row {
+	padding-top: 8%;
+	padding-bottom: 8%;
+}
+
+/*
+ * Feature card style
+ */
+.feature-card {
+	border: 1px solid #F0F0F0;
+	border-radius: 5px;
+	height: 100%;
+	overflow:hidden;
+	padding: 1%;
+}
+
+.feature-card-title {
+	color: black;
+}
+
+.feature-card-rating i{
+	color: #FFEC00;
+}
+
+.feature-card-link {
+	color: #2BDE73 !important;
+	cursor: pointer;
+}
+
+.feature-card-description {
+	color: #373a3c;
+}
+
+.feature-card-details i {
+	margin-left: 2%;
+	color: #373a3c;
+}
+
+.feature-card-details p {
+	color: #373a3c !important;
+}
+
+
+.feature-card-details i:first-child {
+	margin-left: 0%;
+}
+
+/*
+ $ Bootstrap card style
+ */
+.card-title {
+	color: black;
+}
+
+/*
+ * Nav tab style
+ */
+.nav-link {
+	color: #2BDE73;
+}
+
+.nav-link:hover {
+	color: #1db95c;
+}
+
+.tab-content {
+	margin-top: 2%;
+}
+
+.tab-content h3 {
+	color: black;
+}
+
+.card-price {
+	font-size: 1.4em;
+}
+
+/*
+ * Course details rating style
+ */
+ #rating .row {
+ 	padding: 0%;
+ }
+
+.rating h5 {
+	color: black;
+	padding-top: 0px;
+}
+
+.rating p {
+	color: #373a3c;
+}
+
+.fa-star, .fa-star-half-full {
+	color: #FFEC00;
+}
+
+/*
+ * List group item style
+ */
+ #chapters .row {
+ 	padding: 0%;
+ }
+
+li.list-group-item > div.list-group {
+	margin-top: 2%;
+	margin-right: 10%;
+}
+
+#chapters li.list-group-item {
+	border: none;
+	border-bottom: 1px solid #ddd;
+}
+
+li.list-group-item a.list-group-item {
+	color: #373a3c;
+	border: none;
+	border-top: 1px solid #ddd;
+}
+
+a.list-group-item:hover {
+	color: #2BDE73 !important;
+}
+
+.list-group-item.active {
+	background-color: #2BDE73;
+	border-color: #2BDE73;
+	color: #fff !important;
+}
+
+.list-group-item.active:hover {
+	color: #fff !important;
+}
+
+.list-group-item.active:hover {
+	background-color: #2BDE73;
+	text-decoration: underline;
+	color: #fff;
+	border-color: #2BDE73;
+}
+
+.list-group-item {
+	color: #373a3c;
+}
+
+
+/*
+ * Side details card style
+ */
+#side-details a.btn-success{
+	width: 180px;
+    white-space: normal;
+}
+
+/*
+ * Collapse style
+ */
+ #video-container {
+ 	border-left: 1px solid #ddd;
+ }
+
+.panel-heading a {
+	color: #373a3c;
+}
+
