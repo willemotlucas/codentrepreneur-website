@@ -10,8 +10,8 @@ class CreatePreorderProjects < ActiveRecord::Migration[5.0]
       t.boolean :active, null: false, default: true
       t.text :long_description
       t.string :release_date
-      t.decimal :original_price, null:false
-      t.decimal :preorder_price, null:false
+      t.decimal :original_price, precision: 5, scale: 2, null:false
+      t.decimal :preorder_price, precision: 5, scale: 2, null:false
       t.datetime :created_at, default: DateTime.now
       t.datetime :updated_at
 

@@ -9,7 +9,7 @@ class CreatePaidProjects < ActiveRecord::Migration[5.0]
       t.boolean :featured, null: false, default: false
       t.boolean :active, null: false, default: true
       t.text :long_description
-      t.decimal :price, null: false
+      t.decimal :price, precision: 5, scale: 2, null: false
       t.datetime :created_at, default: DateTime.now
       t.datetime :updated_at
 
