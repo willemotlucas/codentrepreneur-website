@@ -20,23 +20,27 @@
 	      	<a class="nav-link" href="#">Projets</a>
 	    </li>
 	    <li class="nav-item">
-	     	<a class="nav-link" href="#">Connexion</a>
+	    	<%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
 	    </li>
 	  	<li class="nav-item">
-	  		<a class="btn btn-outline-success">Inscription</a>
+	  		<%= link_to "Inscription", new_user_registration_path, class: "btn btn-outline-success" %>
 	  	</li>
 	  </ul>
 	</nav>
 
 	<% if notice %>
-		<div class="alert alert-success" role="alert">
-		  <%= notice %>
+		<div class="container">
+			<div class="alert alert-success" role="alert">
+			  <%= notice %>
+			</div>
 		</div>
 	<% end %>
 
 	<% if alert %>
-		<div class="alert alert-danger" role="alert">
-		  <%= alert %>
+		<div class="container">
+			<div class="alert alert-danger" role="alert">
+			  <%= alert %>
+			</div>
 		</div>
 	<% end %>
 

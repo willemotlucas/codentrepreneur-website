@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col col-sm-4 col-sm-offset-4">
+		<div id="reset-password-form" class="sign-form-border">
+
+		<h2 class="text-xs-center">Mot de passe oublié ?</h2>
+
+		<p class="text-xs-center">Un email contenant un lien de réinitialisation de votre mot de passe vous sera envoyé.</p>
+
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+		  <%= devise_error_messages! %>
+
+        <div class="form-group">
+            <%= f.label :email, "Adresse email" %>
+            <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Entrez votre adresse email" %>
+        </div>
+
+		  <div class="text-xs-center">
+		    <%= f.submit "Envoyer les instructions", class: "btn btn-success" %>
+		  </div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+
+		</div>
+	</div>
+</div>

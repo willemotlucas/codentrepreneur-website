@@ -60,6 +60,13 @@ a.btn-outline-success:hover, a.btn-success {
 }
 
 /*
+ * Alert style
+ */
+.alert {
+	margin-top: 2%;
+}
+
+/*
  * Header style
 */ 
 header {
@@ -240,3 +247,15 @@ a.list-group-item:hover {
 	color: #373a3c;
 }
 
+/*
+ * Sign up, sign in forms
+ */
+.sign-link {
+ 	padding-top: 2%;
+}
+
+.sign-form-border {
+	border: 1px solid #DADADA;
+	border-radius: 10px;
+	padding: 4%;
+}

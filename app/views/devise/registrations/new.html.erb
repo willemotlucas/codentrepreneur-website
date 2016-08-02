@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col col-sm-4 col-sm-offset-4">
+    <div id="sign-up-form" class="sign-form-border">
+        <h2 class="text-xs-center">Inscrivez-vous, et accédez aux formations gratuites !</h2>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="form-group">
+            <%= f.label :email, "Adresse email" %>
+            <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Entrez votre adresse email" %>
+            <small id="emailHelp" class="form-text text-muted">Nous ne diffuserons jamais votre adresse e-mail</small>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :last_name, "Nom" %>
+            <%= f.text_field :last_name, class: "form-control", placeholder: "Votre nom" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :first_name, "Prénom" %>
+            <%= f.text_field :first_name, class: "form-control", placeholder: "Votre prénom" %>
+            <small id="emailHelp" class="form-text text-muted">Nous ne diffuserons jamais vos informations personnelles</small>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password, "Mot de passe" %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> caractères minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Entrez votre mot de passe" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation, "Confirmation du mot de passe" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirmez votre mot de passe" %>
+          </div>
+
+          <div class="text-xs-center">
+            <%= f.submit "S'inscrire gratuitement", class: "btn btn-success" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
