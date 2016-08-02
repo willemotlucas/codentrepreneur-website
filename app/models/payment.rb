@@ -1,4 +1,10 @@
 class Payment < ApplicationRecord
-  belongs_to :paymentable, polymorphic: true
-  belongs_to :user
+	# Validations
+	validates :amount, presence: true
+	validates :paymentable, presence: true
+	validates_uniqueness_of :paymentable, scope: [:user]
+
+	# Relationships
+  	belongs_to :paymentable, polymorphic: true
+  	belongs_to :user
 end

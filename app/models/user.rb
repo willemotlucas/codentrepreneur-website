@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   before_save :generate_referral_code
 
-  # Validations
-
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
