@@ -1,7 +1,7 @@
 class CreatePreorderProjects < ActiveRecord::Migration[5.0]
   def change
     create_table :preorder_projects do |t|
-      t.string :title, null: false, default: ""
+      t.string :title, null: false
       t.string :image_url
       t.string :video_url
       t.text :short_description, null: false
@@ -12,7 +12,7 @@ class CreatePreorderProjects < ActiveRecord::Migration[5.0]
       t.string :release_date
       t.decimal :original_price, precision: 5, scale: 2, null:false
       t.decimal :preorder_price, precision: 5, scale: 2, null:false
-      t.datetime :created_at, default: DateTime.now
+      t.datetime :created_at
       t.datetime :updated_at
 
       t.timestamps

@@ -3,12 +3,14 @@ class CreateTasks < ActiveRecord::Migration[5.0]
     create_table :tasks do |t|
       t.string :title, null: false
       t.text :description
-      t.integer :order
-      t.datetime :created_at, default: DateTime.now
+      t.integer :order, null: false
+      t.datetime :created_at
       t.datetime :updated_at
       t.references :taskable, polymorphic: true
 
       t.timestamps
+
+      add_index :tasks, [:taskable, :order], unique: true
     end
   end
 end
