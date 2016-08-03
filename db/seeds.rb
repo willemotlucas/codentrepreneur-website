@@ -19,6 +19,17 @@
 # INSERT INTO `website_development`.`users` (`email`, `encrypted_password`, `first_name`, `last_name`, `user_role`, `referral_code`, `created_at`, `updated_at`) VALUES ('jeandupont@gmail.com', 'password', 'Jean', 'Dupont', 'normal', 'qsdfg', now(), now());
 # INSERT INTO `website_development`.`users` (`email`, `encrypted_password`, `first_name`, `last_name`, `user_role`, `referral_code`, `created_at`, `updated_at`) VALUES ('alaindurand@gmail.com', 'password', 'Alain', 'Durand', 'normal', 'poiuy', now(), now());
 # =====================
+
+Step.delete_all
+FreeProject.delete_all
+PaidProject.delete_all
+UpcomingProject.delete_all
+PreorderProject.delete_all
+Task.delete_all
+Payment.delete_all
+Subscription.delete_all
+Rating.delete_all
+
 lucas = User.where(email: "lucas@codentrepreneur.fr").first
 alaeddine = User.where(email: "hajjem.alaeddine@gmail.com").first
 jean = User.where(email: "jeandupont@gmail.com").first

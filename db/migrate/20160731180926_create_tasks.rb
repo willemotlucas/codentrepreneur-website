@@ -9,8 +9,6 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.references :taskable, polymorphic: true
 
       t.timestamps
-
-      add_index :tasks, [:taskable, :order], unique: true
     end
   end
 end

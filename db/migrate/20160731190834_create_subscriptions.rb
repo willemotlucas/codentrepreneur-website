@@ -6,8 +6,6 @@ class CreateSubscriptions < ActiveRecord::Migration[5.0]
       t.datetime :created_at
 
       t.timestamps
-
-      add_index :subscriptions, [:subscriptionable, :user], unique: true
     end
   end
 end
