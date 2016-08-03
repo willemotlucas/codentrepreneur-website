@@ -4,14 +4,14 @@ class DeviseMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
-  def confirmation_instructions(user, confirmation_token)
+  def confirmation_instructions(user, confirmation_token, opts = {})
   	@user = user
   	@confirmation_token = confirmation_token
 
     mail to: user.email, subject: "Confirmation de votre inscription sur Codentrepreneur"
   end
 
-  def reset_password_instructions(user, reset_password_token)
+  def reset_password_instructions(user, reset_password_token, opts = {})
   	@user = user
   	@reset_password_token = reset_password_token
 

@@ -20,6 +20,7 @@ gem 'rails-i18n', '~> 5.0.0'
 # Use devise for authentication module
 gem 'devise'
 gem 'devise-i18n'
+gem 'mailcatcher'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
