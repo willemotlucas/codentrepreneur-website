@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root to: "pages#index"
 
   get "preorder_project/:id" => "preorder_project#show", as: "preorder_project"
+
+  get "free_project/:id" => "free_project#show", as: "free_project"
 end

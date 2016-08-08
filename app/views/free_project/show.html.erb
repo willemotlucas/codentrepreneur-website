@@ -1,0 +1,84 @@
+<section id="featured-project">
+	<div class="container">
+		<div class="row">
+			<h1 class="text-xs-center"><%= @free_project.title %></h1>
+			<div class="col col-sm-12 col-lg-9">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link active" data-toggle="tab" href="#summary" role="tab">Résumé</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tâches <span class="tag tag-default"><%= @free_project.tasks.count %></span></a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#ratings" role="tab">Avis <span class="tag tag-default"><%= @free_project.ratings.count %></span></a>
+				  </li>
+				</ul>
+
+				<div class="tab-content">
+				  <div class="tab-pane active" id="summary" role="tabpanel">
+				  	<img class="img-fluid" src="http://placehold.it/1000x500" alt=""/>
+				  	<h3>A propos</h3>
+				  	<p class="text-justify"><%= @free_project.long_description %></p>
+				  </div>
+
+				  <div class="tab-pane" id="tasks" role="tabpanel">
+				  	<div class="row">
+				  		<div class="col col-xs-12">
+				  			<ul class="list-group">
+
+				  			<% @free_project.tasks.each do |task| %>
+							  <li class="list-group-item">
+							    <h5 class="list-group-item-heading"><%= task.title %></h5>
+							    <p class="list-group-item-text"><%= task.description %>
+								</p>
+								<div class="list-group">
+								  <% task.steps.each do |step| %>
+								  	<%= link_to "video.html", class: "list-group-item" do %>
+								  		<i class="fa fa-play fa-1x"></i> <%= step.title %>
+								  	<% end %>
+								  <% end %>
+								</div>
+							  </li>
+				  			<% end %>
+							</ul>
+				  		</div>
+				  	</div>
+				  </div>
+
+				  <div class="tab-pane" id="ratings" role="tabpanel">
+				  	  <% @free_project.ratings.each do |rating| %>
+				  	  	<div class="row">
+						  <div class="col col-xs-12">
+						  	<div class="col col-xs-2"><img src="http://placehold.it/100x100" class="img-fluid img-circle"></div>
+						  	<div class="col col-xs-10">
+							  	<div class="rating">
+								  	<h5><%= rating.user.first_name %> <%= rating.user.last_name %> - 
+								  		<% rating.note.times do %>
+								  			<i class="fa fa-star fa-1x"></i>
+								  		<% end %>
+								  	</h5>
+							  		<p><%= rating.comment %></p>
+							  	</div>
+							</div>
+					  	  </div>
+						</div>
+
+						<hr/>
+				  	  <% end %>
+				    </div>
+				  </div>
+				</div>
+				<div class="col col-xs-12 col-lg-3">
+					<div id="side-details" class="card card-block">
+					  <p class="card-text"><i class="fa fa-star fa-1x"></i><i class="fa fa-star fa-1x"></i><i class="fa fa-star fa-1x"></i><i class="fa fa-star fa-1x"></i><i class="fa fa-star-half-full fa-1x"></i> <%= @free_project.ratings.average(:note).round(2).to_f %>/5</p>
+					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de formation vidéos</p>
+				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
+				      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
+				      <p class="text-xs-center"><a href="#" class="btn btn-success">Commencer la formation</a></p>
+				    </div>
+				</div>	
+			</div>			
+		</div>
+	</div>
+</section>

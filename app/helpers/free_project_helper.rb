@@ -1,0 +1,2 @@
+module FreeProjectHelper
+end
