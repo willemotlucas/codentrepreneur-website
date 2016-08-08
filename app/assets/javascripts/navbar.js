@@ -1,7 +1,8 @@
-$('.dropdown-toggle').dropdown()
 
 $(document).ready(function(){
-    var $navbar = $("#navbar"),
+    $('.dropdown-toggle').dropdown()
+
+    /*var $navbar = $("#navbar"),
         y_pos = $navbar.offset().top,
         height = $navbar.height();
 
@@ -13,5 +14,5 @@ $(document).ready(function(){
         } else if (scrollTop <= y_pos) {
             $navbar.removeClass("sticky");
         }
-    });
+    });*/
 });
