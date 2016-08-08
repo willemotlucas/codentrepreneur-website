@@ -19,12 +19,27 @@
 	    <li class="nav-item">
 	      	<a class="nav-link" href="#">Projets</a>
 	    </li>
-	    <li class="nav-item">
-	    	<%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-	    </li>
-	  	<li class="nav-item">
-	  		<%= link_to "Inscription", new_user_registration_path, class: "btn btn-outline-success" %>
-	  	</li>
+
+	    <% if user_signed_in? %>
+	    	<div class="dropdown">
+			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <%= current_user.first_name %>	
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Mes projets</a>
+			    <a class="dropdown-item" href="#">Mon compte</a>
+			    <div class="dropdown-divider"></div>
+			    <%= link_to "Déconnexion", destroy_user_session_path, class: "dropdown-item"%>
+			  </div>
+			</div>
+	    <% else %>
+		    <li class="nav-item">
+		    	<%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
+		    </li>
+		  	<li class="nav-item">
+		  		<%= link_to "Inscription", new_user_registration_path, class: "btn btn-outline-success" %>
+		  	</li>
+		<% end %>
 	  </ul>
 	</nav>
 
@@ -44,7 +59,7 @@
 		</div>
 	<% end %>
 
-    <%= yield %>
+	<%= yield %>		
 
     <footer>
     	<!-- Put something -->

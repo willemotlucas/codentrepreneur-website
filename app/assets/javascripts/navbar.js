@@ -1,3 +1,5 @@
+$('.dropdown-toggle').dropdown()
+
 $(document).ready(function(){
     var $navbar = $("#navbar"),
         y_pos = $navbar.offset().top,

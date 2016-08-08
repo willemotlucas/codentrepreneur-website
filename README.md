@@ -45,6 +45,16 @@ If you don't have a MySQL server, please install one first.
 2. Finally, before running rake db:seed, open the file website/db/seeds.rb and follow instructions at the top of the file.
 You have to insert a few rows manually in your database, then you will be able to run "rake db:seed" to import sample data in your local database
 
+* Launch tests suite
+
+1. First, you have to create a test database. Go on your MySQL Workbench and create a new schema called website_test
+
+2. Then, run "rake db:migrate RAILS_ENV=test" to create tables in test schema
+
+3. If necessary, write your tests under the folder test/
+
+4. To run a tests suite, run "rails test test/models/your_table_test.rb"
+
 Things you may want to cover:
 
 * Ruby version
