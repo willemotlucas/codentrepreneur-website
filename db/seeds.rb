@@ -37,13 +37,13 @@ alain = User.where(email: "alaindurand@gmail.com").first
 
 # Create first free project
 freeProject = FreeProject.create(title: "Créez une landing page pour votre start-up", short_description: "Lorem ipsum", created_at: DateTime.now, updated_at: DateTime.now)
-task1 = Task.create(title: "Tâche 1 : Préparation du projet", description: "Lorem ipsum dolor amet", order: 10, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
-task2 = Task.create(title: "Tâche 2 : Modification du template Bootstrap", description: "Lorem ipsum dolor amet", order: 20, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
-task3 = Task.create(title: "Tâche 3 : Installation des outils de tracking", description: "Lorem ipsum dolor amet", order: 30, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
-task4 = Task.create(title: "Tâche 4 : Mise en ligne de landing page", description: "Lorem ipsum dolor amet", order: 40, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
-Step.create(title: "1. Introduction", step_type: Step.step_types[:video], video_url: "https://www.youtube.com/watch?v=DI4UmIH5vSA", video_duration: "2:04", order: 10, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
-Step.create(title: "2. Initialisation du projet", step_type: Step.step_types[:video], video_url: "https://www.youtube.com/watch?v=DI4UmIH5vSA", video_duration: "2:04", order: 10, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
-Step.create(title: "3. Utilisation de Chrome Dev Tools", step_type: Step.step_types[:video], video_url: "https://www.youtube.com/watch?v=6PrQOtZMPlQ", video_duration: "3:17", order: 30, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
+task1 = Task.create(title: "Tâche 1 : Préparation du projet", description: "Lorem ipsum dolor amet", task_order: 10, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
+task2 = Task.create(title: "Tâche 2 : Modification du template Bootstrap", description: "Lorem ipsum dolor amet", task_order: 20, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
+task3 = Task.create(title: "Tâche 3 : Installation des outils de tracking", description: "Lorem ipsum dolor amet", task_order: 30, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
+task4 = Task.create(title: "Tâche 4 : Mise en ligne de landing page", description: "Lorem ipsum dolor amet", task_order: 40, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
+Step.create(title: "1. Introduction", step_type: Step.step_types[:video], video_url: "https://www.youtube.com/watch?v=DI4UmIH5vSA", video_duration: "2:04", step_order: 10, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
+Step.create(title: "2. Initialisation du projet", step_type: Step.step_types[:video], video_url: "https://www.youtube.com/watch?v=DI4UmIH5vSA", video_duration: "2:04", step_order: 10, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
+Step.create(title: "3. Utilisation de Chrome Dev Tools", step_type: Step.step_types[:video], video_url: "https://www.youtube.com/watch?v=6PrQOtZMPlQ", video_duration: "3:17", step_order: 30, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
 
 # Create first preorder project
 preorderProject = PreorderProject.create(title: "Apprenez Angular.js et Ionic en clonant Tinder", short_description: "Lorem ipsum", duration: "4 à 6h", featured: true, release_date: "Octobre 2016", original_price: 50, preorder_price: 29.90, created_at: DateTime.now, updated_at: DateTime.now)
@@ -55,13 +55,13 @@ UpcomingProject.create(title: "Apprenez Swift en clonant Instagram", short_descr
 
 # Create a sample paid project
 paidProject = PaidProject.create(title: "Apprenez Ruby on Rails en clonant Airbnb", short_description: "Lorem ipsum", price: 50, created_at: DateTime.now, updated_at: DateTime.now)
-task1 = Task.create(title: "Tâche 1 : Préparation du projet", description: "Lorem ipsum dolor amet", order: 10, created_at: DateTime.now, updated_at: DateTime.now, taskable: paidProject)
-task2 = Task.create(title: "Tâche 2 : Mise en place de l'authentification", description: "Lorem ipsum dolor amet", order: 20, created_at: DateTime.now, updated_at: DateTime.now, taskable: paidProject)
-Step.create(title: "1. Introduction", step_type: :video, order: 10, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
-Step.create(title: "2. Présentation de Ruby", step_type: Step.step_types[:video], order: 20, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
-Step.create(title: "3. Présentation de Rails", step_type: Step.step_types[:video], order: 30, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
-Step.create(title: "1. Installation de Devise", step_type: Step.step_types[:video], order: 40, created_at: DateTime.now, updated_at: DateTime.now, task: task2)
-Step.create(title: "2. Mise en place du login Facebook", step_type: Step.step_types[:video], order: 50, created_at: DateTime.now, updated_at: DateTime.now, task: task2)
+task1 = Task.create(title: "Tâche 1 : Préparation du projet", description: "Lorem ipsum dolor amet", task_order: 10, created_at: DateTime.now, updated_at: DateTime.now, taskable: paidProject)
+task2 = Task.create(title: "Tâche 2 : Mise en place de l'authentification", description: "Lorem ipsum dolor amet", task_order: 20, created_at: DateTime.now, updated_at: DateTime.now, taskable: paidProject)
+Step.create(title: "1. Introduction", step_type: :video, step_order: 10, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
+Step.create(title: "2. Présentation de Ruby", step_type: Step.step_types[:video], step_order: 20, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
+Step.create(title: "3. Présentation de Rails", step_type: Step.step_types[:video], step_order: 30, created_at: DateTime.now, updated_at: DateTime.now, task: task1)
+Step.create(title: "1. Installation de Devise", step_type: Step.step_types[:video], step_order: 40, created_at: DateTime.now, updated_at: DateTime.now, task: task2)
+Step.create(title: "2. Mise en place du login Facebook", step_type: Step.step_types[:video], step_order: 50, created_at: DateTime.now, updated_at: DateTime.now, task: task2)
 
 # Create subscriptions
 Subscription.create(user: lucas, subscriptionable: freeProject)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803092908) do
+ActiveRecord::Schema.define(version: 20160808202323) do
 
   create_table "free_projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                           null: false
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20160803092908) do
     t.string   "video_duration"
     t.string   "slug"
     t.text     "explanations",   limit: 65535
-    t.integer  "order",                        null: false
+    t.integer  "step_order",                   null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "task_id"
@@ -110,12 +110,12 @@ ActiveRecord::Schema.define(version: 20160803092908) do
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                       null: false
     t.text     "description",   limit: 65535
-    t.integer  "order",                       null: false
+    t.integer  "task_order",                  null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "taskable_type"
     t.integer  "taskable_id"
-    t.index ["taskable_id", "taskable_type", "order"], name: "index_tasks_on_taskable_id_and_taskable_type_and_order", unique: true, using: :btree
+    t.index ["taskable_id", "taskable_type", "task_order"], name: "index_tasks_on_taskable_id_and_taskable_type_and_task_order", unique: true, using: :btree
     t.index ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable_type_and_taskable_id", using: :btree
   end
 
