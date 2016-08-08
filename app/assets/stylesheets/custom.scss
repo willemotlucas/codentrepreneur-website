@@ -45,7 +45,7 @@ a.btn-outline-success:hover, a.btn-success {
 	color: #fff !important;
 }
 
-#navbar.sticky {
+#navbar {
 	width: 100%;
 	z-index: 9999;
 	position: fixed;
@@ -55,7 +55,7 @@ a.btn-outline-success:hover, a.btn-success {
 	transition: all 0.4s ease;
 }
 
-#navbar.sticky .nav-link, #navbar.sticky .navbar-brand {
+#navbar .nav-link, #navbar .navbar-brand {
 	color: rgba(0, 0, 0, 0.5) !important;
 }
 
@@ -71,7 +71,7 @@ a.btn-outline-success:hover, a.btn-success {
 */ 
 header {
 	background-image: url(../images/bg.png);
-	margin-top: -54px;
+	/*margin-top: -54px;*/
 }
 
 header h1, header h2, header h3, header h4, header h5, header h6, header p {

@@ -1,1 +1,33 @@
-<h1>Détail d'un projet en précommande</h1>
+<section id="project-details">
+	<div class="container">
+		<div class="row">
+			<h1 class="text-xs-center"><%= @preorder_project.title %></h1>
+			<h3 class="text-xs-center">Pré-commandez le projet au prix de <%= @preorder_project.preorder_price %>€ seulement !</h3>
+			<div class="col col-sm-12 col-lg-9">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link active" data-toggle="tab" href="#summary" role="tab">Résumé</a>
+				  </li>
+				</ul>
+
+				<div class="tab-content">
+				  <div class="tab-pane active" id="summary" role="tabpanel">
+				  	<img class="img-fluid" src="http://placehold.it/1000x500" alt=""/>
+				  	<h3>A propos</h3>
+				  	<p class="text-justify"><%= @preorder_project.long_description %></p>
+				  </div>
+				</div>
+			</div>	
+			<div class="col col-xs-12 col-lg-3">
+				<div id="side-details" class="card card-block">
+				  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @preorder_project.duration %> de formation vidéos</p>
+				  <p class="card-text"><i class="fa fa-calendar fa-1x" aria-hidden="true"></i> Disponible en <%= @preorder_project.release_date %></p>
+			      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
+			      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
+			      <p class="card-price text-xs-center"><s><%= @preorder_project.original_price %>€</s> <%= @preorder_project.preorder_price%>€</p>
+			      <p class="text-xs-center"><a href="#" class="btn btn-success">Commencer la formation</a></p>
+			    </div>
+			</div>			
+		</div>
+	</div>
+</section>
