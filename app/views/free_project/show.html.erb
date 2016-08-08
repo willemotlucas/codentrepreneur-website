@@ -27,14 +27,14 @@
 				  		<div class="col col-xs-12">
 				  			<ul class="list-group">
 
-				  			<% @free_project.tasks.each do |task| %>
+				  			<% @free_project.tasks.order("task_order ASC").each do |task| %>
 							  <li class="list-group-item">
 							    <h5 class="list-group-item-heading"><%= task.title %></h5>
 							    <p class="list-group-item-text"><%= task.description %>
 								</p>
 								<div class="list-group">
-								  <% task.steps.each do |step| %>
-								  	<%= link_to "video.html", class: "list-group-item" do %>
+								  <% task.steps.order("step_order ASC").each do |step| %>
+								  	<%= link_to step_path(step), class: "list-group-item" do %>
 									  	<% if step.video? %>
 										  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
 									  	<% else %>
@@ -103,7 +103,7 @@
 					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de formation vidéos</p>
 				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
 				      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
-				      <p class="text-xs-center"><a href="#" class="btn btn-success">Commencer la formation</a></p>
+				      <p class="text-xs-center"><%= link_to "Commencer la formation", step_path(@free_project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %></p>
 				    </div>
 				</div>	
 			</div>			
