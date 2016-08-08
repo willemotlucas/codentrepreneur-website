@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get "preorder_project/:id" => "preorder_project#show", as: "preorder_project"
 
   get "free_project/:id" => "free_project#show", as: "free_project"
+
+  get "step/:id" => "step#show", as: "step"
 end
