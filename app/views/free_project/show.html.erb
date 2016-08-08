@@ -35,7 +35,11 @@
 								<div class="list-group">
 								  <% task.steps.each do |step| %>
 								  	<%= link_to "video.html", class: "list-group-item" do %>
-								  		<i class="fa fa-play fa-1x"></i> <%= step.title %>
+									  	<% if step.video? %>
+										  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
+									  	<% else %>
+									  		<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
+									  	<% end %>
 								  	<% end %>
 								  <% end %>
 								</div>
@@ -53,12 +57,16 @@
 						  	<div class="col col-xs-2"><img src="http://placehold.it/100x100" class="img-fluid img-circle"></div>
 						  	<div class="col col-xs-10">
 							  	<div class="rating">
-								  	<h5><%= rating.user.first_name %> <%= rating.user.last_name %> - 
+								  	<h5><%= rating.user.first_name %> <%= rating.user.last_name.first.upcase_first %>. - 
 								  		<% rating.note.times do %>
 								  			<i class="fa fa-star fa-1x"></i>
 								  		<% end %>
 								  	</h5>
-							  		<p><%= rating.comment %></p>
+								  	<% if rating.comment.blank? %>
+								  		<p>Aucun commentaire laissé</p>
+								  	<% else %>
+							  			<p><%= rating.comment %></p>
+							  		<% end %>
 							  	</div>
 							</div>
 					  	  </div>
@@ -71,7 +79,27 @@
 				</div>
 				<div class="col col-xs-12 col-lg-3">
 					<div id="side-details" class="card card-block">
-					  <p class="card-text"><i class="fa fa-star fa-1x"></i><i class="fa fa-star fa-1x"></i><i class="fa fa-star fa-1x"></i><i class="fa fa-star fa-1x"></i><i class="fa fa-star-half-full fa-1x"></i> <%= @free_project.ratings.average(:note).round(2).to_f %>/5</p>
+					  <% if @free_project.ratings.count == 0 %>
+					  	<p class="card-text">Pas encore d'avis</p>
+					  <% else %>
+					  	<p class="card-text">
+					  	<% @free_project.ratings.average(:note).floor.times do %>
+					  		<i class="fa fa-star fa-1x"></i>
+					  	<% end %>
+					  	
+					  	<% if @free_project.ratings.average(:note).round(2).to_f - @free_project.ratings.average(:note).floor > 0 %>
+					  		<i class="fa fa-star-half-full fa-1x"></i>
+					  		<% (4 - @free_project.ratings.average(:note).floor).times do %>
+					  			<i class="fa fa-star-o fa-1x"></i>
+					  		<% end %>
+					  	<% else %>
+					  		<% (5 - @free_project.ratings.average(:note).floor).times do %>
+					  			<i class="fa fa-star-o fa-1x"></i>
+					  		<% end %>
+					  	<% end %>
+
+					  	 <%= @free_project.ratings.average(:note).round(1).to_f %>/5</p>
+					  <% end %>
 					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de formation vidéos</p>
 				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
 				      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
