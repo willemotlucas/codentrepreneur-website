@@ -52,6 +52,10 @@ gem 'toastr_rails'
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 gem 'coderay', '~> 1.1', '>= 1.1.1'
 
+# Friendly URL for SEO
+gem 'friendly_id', '~> 5.1'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

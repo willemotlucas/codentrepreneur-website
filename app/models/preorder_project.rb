@@ -1,4 +1,7 @@
 class PreorderProject < ApplicationRecord
+	extend FriendlyId
+	friendly_id :title, use: [:slugged, :finders]
+
 	# Validations
 	validates :title, presence: true, length: {maximum: 255}
 	validates :short_description, presence: true

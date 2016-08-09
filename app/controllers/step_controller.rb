@@ -14,7 +14,7 @@ class StepController < ApplicationController
 		end
 
 		def find_step
-			@step = Step.find(params[:id])
+			@step = Step.where(slug: params[:id]).first
 		end
 
 		def check_subscription

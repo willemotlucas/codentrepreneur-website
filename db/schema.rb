@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808202323) do
+ActiveRecord::Schema.define(version: 20160809202432) do
 
   create_table "free_projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                           null: false
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20160808202323) do
     t.text     "long_description",  limit: 65535
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_free_projects_on_slug", unique: true, using: :btree
+  end
+
+  create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
   create_table "paid_projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -38,7 +52,9 @@ ActiveRecord::Schema.define(version: 20160808202323) do
     t.datetime "created_at",                                                                null: false
     t.datetime "updated_at",                                                                null: false
     t.integer  "preorder_project_id"
+    t.string   "slug"
     t.index ["preorder_project_id"], name: "index_paid_projects_on_preorder_project_id", using: :btree
+    t.index ["slug"], name: "index_paid_projects_on_slug", unique: true, using: :btree
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,6 +83,8 @@ ActiveRecord::Schema.define(version: 20160808202323) do
     t.decimal  "preorder_price",                  precision: 5, scale: 2,                 null: false
     t.datetime "created_at",                                                              null: false
     t.datetime "updated_at",                                                              null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_preorder_projects_on_slug", unique: true, using: :btree
   end
 
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -93,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160808202323) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "task_id"
+    t.index ["slug"], name: "index_steps_on_slug", unique: true, using: :btree
     t.index ["task_id"], name: "index_steps_on_task_id", using: :btree
   end
 

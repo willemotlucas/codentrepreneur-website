@@ -1,6 +1,6 @@
 class FreeProjectController < ApplicationController
 	def show
-		@free_project = FreeProject.find(params[:id])
+		@free_project = FreeProject.where(slug: params[:id]).first
 	end
 
 	private
