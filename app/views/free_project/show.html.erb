@@ -34,7 +34,7 @@
 								</p>
 								<div class="list-group">
 								  <% task.steps.order("step_order ASC").each do |step| %>
-								  	<%= link_to step_path(step), class: "list-group-item" do %>
+								  	<%= link_to free_project_step_path(@free_project, step), class: "list-group-item" do %>
 									  	<% if step.video? %>
 										  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
 									  	<% else %>
@@ -87,7 +87,7 @@
 					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de formation vidéos</p>
 				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
 				      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
-				      <p class="text-xs-center"><%= link_to "Commencer la formation", step_path(@free_project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %></p>
+				      <p class="text-xs-center"><%= link_to "Commencer la formation", free_project_step_path(@free_project, @free_project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %></p>
 				    </div>
 				</div>	
 			</div>			

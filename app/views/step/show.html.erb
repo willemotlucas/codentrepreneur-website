@@ -16,7 +16,7 @@
 					    <div id="task-<%= task.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="header-task-<%= task.id %>">
 					    	<div class="list-group">
 					    	  <% task.steps.order("step_order ASC").each do |step| %>
-					    	  	<%= link_to step_path(step), class: "list-group-item" do %>
+					    	  	<%= link_to free_project_step_path(@project, step), class: "list-group-item" do %>
 					    	  		<%= truncate(step.title, length: 32) %> <span class="tag tag-default pull-xs-right"><%= step.video_duration %></span>
 					    	  	<% end %>
 					    	  <% end %>
@@ -34,13 +34,18 @@
 				<div class="row">
 					<div class="col col-sm-6">
 						<% if @previous_step %>
-							<%= link_to "Vidéo précédente", step_path(@previous_step), class: "btn btn-lg btn-outline-success pull-xs-left" %>
+							<%= link_to "Vidéo précédente", free_project_step_path(@project, @previous_step), class: "btn btn-lg btn-outline-success pull-xs-left" %>
 						<% end %>
 					</div>
 					<div class="col col-sm-6">
 						<% if @next_step %>
-							<%= link_to "Vidéo suivante", step_path(@next_step), class: "btn btn-lg btn-outline-success pull-xs-right" %>
+							<%= link_to "Vidéo suivante", free_project_step_path(@project, @next_step), class: "btn btn-lg btn-outline-success pull-xs-right" %>
 						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-sm-12">
+						<%= markdown(@step.explanations) if @step.explanations != nil %>
 					</div>
 				</div>
 				<div class="row">
