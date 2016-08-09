@@ -82,3 +82,4 @@ Rating.create(user: alaeddine, ratingable: freeProject, note: 5, comment: "J'ai 
 Rating.create(user: alain, ratingable: freeProject, note: 4, created_at: DateTime.now)
 Rating.create(user: alaeddine, ratingable: paidProject, note: 5, created_at: DateTime.now)
 Rating.create(user: jean, ratingable: paidProject, note: 5, comment: "Grâce à cette formation, j'ai trouvé un job de développeur !", created_at: DateTime.now)
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
