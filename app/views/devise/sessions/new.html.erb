@@ -5,6 +5,8 @@
     <h2 class="text-xs-center">Connexion à votre compte</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render partial: "common/devisealerts" %>
+      
       <div class="form-group">
         <%= f.label :email, "Adresse email" %>
         <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Entrez votre adresse email" %>

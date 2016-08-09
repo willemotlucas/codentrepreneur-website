@@ -15,5 +15,8 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-readyselector
 //= require_tree .
+//= require toastr
 //= require navbar
+//= require free_project

@@ -7,7 +7,7 @@
 		<p class="text-xs-center">Un email contenant un lien de réinitialisation de votre mot de passe vous sera envoyé.</p>
 
 		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-		  <%= devise_error_messages! %>
+		<%= render partial: "common/devisealerts" %>
 
         <div class="form-group">
             <%= f.label :email, "Adresse email" %>

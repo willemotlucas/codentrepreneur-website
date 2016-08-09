@@ -1,0 +1,16 @@
+<% @free_project.ratings.average(:note).floor.times do %>
+	<i class="fa fa-star fa-1x"></i>
+<% end %>
+
+<% if @free_project.ratings.average(:note).round(2).to_f - @free_project.ratings.average(:note).floor > 0 %>
+	<i class="fa fa-star-half-full fa-1x"></i>
+	<% (4 - @free_project.ratings.average(:note).floor).times do %>
+		<i class="fa fa-star-o fa-1x"></i>
+	<% end %>
+<% else %>
+	<% (5 - @free_project.ratings.average(:note).floor).times do %>
+		<i class="fa fa-star-o fa-1x"></i>
+	<% end %>
+<% end %>
+
+ <%= @free_project.ratings.average(:note).round(1).to_f %>/5

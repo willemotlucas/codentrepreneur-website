@@ -54,8 +54,8 @@
 				  	  <% @free_project.ratings.each do |rating| %>
 				  	  	<div class="row">
 						  <div class="col col-xs-12">
-						  	<div class="col col-xs-2"><img src="http://placehold.it/100x100" class="img-fluid img-circle"></div>
-						  	<div class="col col-xs-10">
+						  	<div class="col col-xs-1"><%= image_tag gravatar_url(rating.user, 60), class: "img-circle img-responsive" %></div>
+						  	<div class="col col-xs-11">
 							  	<div class="rating">
 								  	<h5><%= rating.user.first_name %> <%= rating.user.last_name.first.upcase_first %>. - 
 								  		<% rating.note.times do %>
@@ -82,23 +82,7 @@
 					  <% if @free_project.ratings.count == 0 %>
 					  	<p class="card-text">Pas encore d'avis</p>
 					  <% else %>
-					  	<p class="card-text">
-					  	<% @free_project.ratings.average(:note).floor.times do %>
-					  		<i class="fa fa-star fa-1x"></i>
-					  	<% end %>
-					  	
-					  	<% if @free_project.ratings.average(:note).round(2).to_f - @free_project.ratings.average(:note).floor > 0 %>
-					  		<i class="fa fa-star-half-full fa-1x"></i>
-					  		<% (4 - @free_project.ratings.average(:note).floor).times do %>
-					  			<i class="fa fa-star-o fa-1x"></i>
-					  		<% end %>
-					  	<% else %>
-					  		<% (5 - @free_project.ratings.average(:note).floor).times do %>
-					  			<i class="fa fa-star-o fa-1x"></i>
-					  		<% end %>
-					  	<% end %>
-
-					  	 <%= @free_project.ratings.average(:note).round(1).to_f %>/5</p>
+					  	<p class="card-text"><%= render 'common/ratings' %></p>
 					  <% end %>
 					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de formation vidéos</p>
 				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>

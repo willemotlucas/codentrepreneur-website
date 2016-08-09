@@ -10,7 +10,7 @@
 
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
 
 	<nav id="navbar" class="navbar navbar-light bg-faded">
 	<!-- To modify with link_to -->
@@ -45,21 +45,7 @@
 	  </ul>
 	</nav>
 
-	<% if notice %>
-		<div class="container">
-			<div class="alert alert-success" role="alert">
-			  <%= notice %>
-			</div>
-		</div>
-	<% end %>
-
-	<% if alert %>
-		<div class="container">
-			<div class="alert alert-danger" role="alert">
-			  <%= alert %>
-			</div>
-		</div>
-	<% end %>
+	<%= render partial: "common/alerts" %>
 
 	<%= yield %>		
 

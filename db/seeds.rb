@@ -36,7 +36,7 @@ jean = User.where(email: "jeandupont@gmail.com").first
 alain = User.where(email: "alaindurand@gmail.com").first
 
 # Create first free project
-freeProject = FreeProject.create(title: "Créez une landing page pour votre start-up", short_description: "Lorem ipsum", created_at: DateTime.now, updated_at: DateTime.now)
+freeProject = FreeProject.create(title: "Créez une landing page pour votre start-up", duration: "1h15", short_description: "Lorem ipsum", created_at: DateTime.now, updated_at: DateTime.now)
 task1 = Task.create(title: "Tâche 1 : Préparation du projet", description: "Lorem ipsum dolor amet", task_order: 10, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
 task2 = Task.create(title: "Tâche 2 : Modification du template Bootstrap", description: "Lorem ipsum dolor amet", task_order: 20, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)
 task3 = Task.create(title: "Tâche 3 : Installation des outils de tracking", description: "Lorem ipsum dolor amet", task_order: 30, created_at: DateTime.now, updated_at: DateTime.now, taskable: freeProject)

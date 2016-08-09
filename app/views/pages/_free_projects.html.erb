@@ -10,12 +10,14 @@
 					</div>
 					<div class="col col-lg-6 col-xs-12">
 						<div class="feature-card-block">
-							<h2 class="feature-card-title">Créez une landing page pour votre start-up</h2>
-							<p class="feature-card-details"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> 1h15 de vidéos</p>
-							<p class="feature-card-rating"><i class="fa fa-star fa-1w"></i><i class="fa fa-star fa-1w"></i><i class="fa fa-star fa-1w"></i><i class="fa fa-star fa-1w"></i><i class="fa fa-star-half-full fa-1w"></i> 4,5/5 - <a href="#" class="feature-card-link">Voir tous les avis</a></p>
-							<p class="feature-card-description text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+							<h2 class="feature-card-title"><%= @free_project.title %></h2>
+							<p class="feature-card-details"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de vidéos</p>
+							<% if @free_project.ratings.count > 0 %>
+								<p class="feature-card-rating"><%= render 'common/ratings' %> - <%= link_to "Voir tous les avis", free_project_path(@free_project, anchor: "ratings"), class: "feature-card-link" %></p>
+							<% else %>
+								<p class="feature-card-rating">Pas encore d'avis</p>
+							<% end %>
+							<p class="feature-card-description text-justify"><%= @free_project.short_description %></p>
 							<%= link_to "Plus de détails", free_project_path(@free_project), class: "btn btn-outline-success" %>
 						</div>
 					</div>
