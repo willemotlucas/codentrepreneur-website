@@ -1,0 +1,24 @@
+<% @preorder_projects.each_with_index do |project, index| %>
+<% if index%2 == 0 %> <div class="clearfix"></div> <% end %>
+<div class="col col-lg-6 col-xs-12">
+	<div class="card">
+	  <div class="card-block">
+	    <h4 class="card-title"><%= project.title %></h4>
+	    <h6 class="card-subtitle text-muted">
+		    <% if !project.duration.blank? %>
+		    	<i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= project.duration %> de vidéos &nbsp;
+		    <% end %>
+		    <% if !project.release_date.blank? %>
+		    	<i class="fa fa-calendar-check-o" aria-hidden="true"></i> <%= project.release_date %>
+		    <% end %>
+	    </h6>
+	  </div>
+	  <div class="card-block">
+	    <p class="card-text"><%= project.short_description %></p>
+	    <div class="text-xs-center">
+	   		<%= link_to "En savoir plus", project, class: "btn btn-outline-success text-xs-center" %>				    		    	
+	    </div>
+	  </div>
+	</div>
+</div>
+<% end %>

@@ -17,7 +17,7 @@
 	  <%= link_to "{Codentrepreneur;}", root_path, class: "navbar-brand" %>
 	  <ul class="nav navbar-nav pull-xs-right">
 	    <li class="nav-item">
-	      	<a class="nav-link" href="#">Projets</a>
+	    	<%= link_to "Projets", 	projects_path, class: "nav-link" %>
 	    </li>
 
 	    <% if user_signed_in? %>

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get "myprojects" => "my_projects#index", as: "my_projects"
 
+  get "projects" => "pages#projects", as: "projects"
+
   #get "free_project/:id" => "free_project#show", as: "free_project"
 
   #get "step/:id" => "step#show", as: "step"
