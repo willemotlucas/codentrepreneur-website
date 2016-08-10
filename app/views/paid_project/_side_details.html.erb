@@ -1,0 +1,19 @@
+<div id="side-details" class="card card-block">
+  <% if @project.ratings.count == 0 %>
+  	<p class="card-text">Pas encore d'avis</p>
+  <% else %>
+  	<p class="card-text"> <%= render partial: 'common/ratings', object: @project.ratings %> </p>
+  <% end %>
+  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @project.duration %> de formation vidéos</p>
+  <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
+  <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
+  <% if @project.tasks.count > 0 %>
+  <p class="text-xs-center">
+  	<% if user_signed_in? && current_user.subscriptions.where(subscriptionable_type: "PaidProject", subscriptionable_id: @project.id).exists? %>
+		<%= link_to "Commencer la formation", paid_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %>
+	<% else %>
+		<a href="#" class="btn btn-success">Acheter pour <br/><strong><%= @project.price %>€</strong></a>
+	<% end %>
+  </p>
+  <% end %>
+</div>

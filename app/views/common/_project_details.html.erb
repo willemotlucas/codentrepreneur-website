@@ -88,25 +88,11 @@
 				  </div>
 				</div>
 				<div class="col col-xs-12 col-lg-3">
-					<div id="side-details" class="card card-block">
-					  <% if @project.ratings.count == 0 %>
-					  	<p class="card-text">Pas encore d'avis</p>
-					  <% else %>
-					  	<p class="card-text"> <%= render partial: 'common/ratings', object: @project.ratings %> </p>
-					  <% end %>
-					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @project.duration %> de formation vidéos</p>
-				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
-				      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
-				      <% if @project.tasks.count > 0 %>
-				      <p class="text-xs-center">
-				      	<% if @project.class.to_s == "FreeProject" %>
-				      		<%= link_to "Commencer la formation", free_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %>
-				      	<% elsif @project.class.to_s == "PaidProject" %>
-							<%= link_to "Commencer la formation", paid_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %>
-						<% end %>
-				      </p>
-				      <% end %>
-				    </div>
+					<% if @project.class.to_s == "FreeProject" %>
+						<%= render partial: "free_project/side_details" %>
+					<% elsif @project.class.to_s == "PaidProject" %>
+						<%= render partial: "paid_project/side_details" %>
+					<% end %>
 				</div>	
 			</div>			
 		</div>

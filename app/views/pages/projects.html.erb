@@ -1,8 +1,10 @@
 <section id="free_projects">
 	<div class="container">
 		<div class="row">
-			<h1>Projets gratuits</h1>
-			<%= render partial: 'common/free_project_card' if @free_projects.count > 0 %>
+			<% if @free_projects.count > 0  %>
+				<h1>Projets gratuits</h1>
+				<%= render partial: 'common/free_project_card' %>
+			<% end %>
 		</div>
 	</div>
 </section>
@@ -10,8 +12,10 @@
 <section id="paid_projects">
 	<div class="container">
 		<div class="row">
-			<h1>Projets payants</h1>
-			<%= render partial: 'common/paid_project_card' if @paid_projects.count > 0 %>
+			<% if @paid_projects.count > 0 %>
+				<h1>Projets payants</h1>
+				<%= render partial: 'common/paid_project_card' %>
+			<% end %>
 		</div>
 	</div>
 </section>
@@ -19,8 +23,10 @@
 <section id="preorder_projects">
 	<div class="container">
 		<div class="row">
-			<h1>Projets disponibles en pré-commande</h1>
-				<%= render partial: 'common/preorder_project_card' if @preorder_projects.count > 0 %>
+			<% if @preorder_projects.count > 0 %>
+				<h1>Projets disponibles en pré-commande</h1>
+				<%= render partial: 'common/preorder_project_card' %>
+			<% end %>
 		</div>
 	</div>
 </section>
