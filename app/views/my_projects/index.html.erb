@@ -1,0 +1,9 @@
+<%= render 'paid_projects' if @paid_projects.count > 0 %>
+
+<%= render 'free_projects' if @free_projects.count > 0 %>
+
+<%= render 'preorder_projects' if @preorder_projects.count > 0 %>
+
+<% if current_user.subscriptions == 0 && current_user.payments == 0 %>
+	<h2>Vous n'êtes inscrit à aucun cours. Commencez dès maintenant !</h2>
+<% end %>

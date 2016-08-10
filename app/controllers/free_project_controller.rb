@@ -1,6 +1,6 @@
 class FreeProjectController < ApplicationController
 	def show
-		@free_project = FreeProject.friendly.find(params[:id])
+		@project = FreeProject.friendly.find(params[:id])
 	end
 
 	private

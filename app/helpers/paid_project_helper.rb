@@ -1,0 +1,2 @@
+module PaidProjectHelper
+end

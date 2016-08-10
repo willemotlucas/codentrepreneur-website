@@ -1,0 +1,114 @@
+<section id="free-project">
+	<div class="container">
+		<div class="row">
+			<h1 class="text-xs-center"><%= @project.title %></h1>
+			<div class="col col-sm-12 col-lg-9">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link active" data-toggle="tab" href="#summary" role="tab">Résumé</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tâches <span class="tag tag-default"><%= @project.tasks.count %></span></a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#ratings" role="tab">Avis <span class="tag tag-default"><%= @project.ratings.count %></span></a>
+				  </li>
+				</ul>
+
+				<div class="tab-content">
+				  <div class="tab-pane active" id="summary" role="tabpanel">
+				  	<img class="img-fluid" src="http://placehold.it/1000x500" alt=""/>
+				  	<h3>A propos</h3>
+				  	<p class="text-justify"><%= @project.long_description %></p>
+				  </div>
+
+				  <div class="tab-pane" id="tasks" role="tabpanel">
+				  	<div class="row">
+				  		<div class="col col-xs-12">
+				  			<ul class="list-group">
+
+				  			<% @project.tasks.order("task_order ASC").each do |task| %>
+							  <li class="list-group-item">
+							    <h5 class="list-group-item-heading"><%= task.title %></h5>
+							    <p class="list-group-item-text"><%= task.description %>
+								</p>
+								<div class="list-group">
+								  <% task.steps.order("step_order ASC").each do |step| %>
+								  	<% if @project.class.to_s == "FreeProject" %>
+								  		<%= link_to free_project_step_path(@project, step), class: "list-group-item" do %>
+									  		<% if step.video? %>
+											  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
+										  	<% else %>
+										  		<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
+										  	<% end %>
+									  	<% end %>
+								  	<% elsif @project.class.to_s == "PaidProject" %>
+								  		<%= link_to paid_project_step_path(@project, step), class: "list-group-item" do %>
+									  		<% if step.video? %>
+												  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
+											  	<% else %>
+											  		<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
+											  	<% end %>
+										  	<% end %>
+								  		<% end %>
+								  <% end %>
+								</div>
+							  </li>
+				  			<% end %>
+							</ul>
+				  		</div>
+				  	</div>
+				  </div>
+
+				  <div class="tab-pane" id="ratings" role="tabpanel">
+				  	  <% @project.ratings.each do |rating| %>
+				  	  	<div class="row">
+						  <div class="col col-xs-12">
+						  	<div class="col col-xs-1"><%= image_tag gravatar_url(rating.user, 60), class: "img-circle img-responsive" %></div>
+						  	<div class="col col-xs-11">
+							  	<div class="rating">
+								  	<h5><%= rating.user.first_name %> <%= rating.user.last_name.first.upcase_first %>. - 
+								  		<% rating.note.times do %>
+								  			<i class="fa fa-star fa-1x"></i>
+								  		<% end %>
+								  	</h5>
+								  	<% if rating.comment.blank? %>
+								  		<p>Aucun commentaire laissé</p>
+								  	<% else %>
+							  			<p><%= rating.comment %></p>
+							  		<% end %>
+							  	</div>
+							</div>
+					  	  </div>
+						</div>
+
+						<hr/>
+				  	  <% end %>
+				    </div>
+				  </div>
+				</div>
+				<div class="col col-xs-12 col-lg-3">
+					<div id="side-details" class="card card-block">
+					  <% if @project.ratings.count == 0 %>
+					  	<p class="card-text">Pas encore d'avis</p>
+					  <% else %>
+					  	<p class="card-text"><%= render 'common/ratings' %></p>
+					  <% end %>
+					  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @project.duration %> de formation vidéos</p>
+				      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
+				      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
+				      <% if @project.tasks.count > 0 %>
+				      <p class="text-xs-center">
+				      	<% if @project.class.to_s == "FreeProject" %>
+				      		<%= link_to "Commencer la formation", free_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %>
+				      	<% elsif @project.class.to_s == "PaidProject" %>
+							<%= link_to "Commencer la formation", paid_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %>
+						<% end %>
+				      </p>
+				      <% end %>
+				    </div>
+				</div>	
+			</div>			
+		</div>
+	</div>
+</section>

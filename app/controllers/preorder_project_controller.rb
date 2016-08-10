@@ -1,6 +1,6 @@
 class PreorderProjectController < ApplicationController
 	def show
-		@preorder_project = PreorderProject.find(params[:id])
+		@preorder_project = PreorderProject.friendly.find(params[:id])
 	end
 
 	private

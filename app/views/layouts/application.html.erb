@@ -27,7 +27,7 @@
 				    <%= current_user.first_name %>	
 				  </a>
 				  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-				    <a class="dropdown-item" href="#">Mes projets</a>
+				  	<%= link_to "Mes projets", my_projects_path, class: "dropdown-item" %>
 				    <a class="dropdown-item" href="#">Mon compte</a>
 				    <div class="dropdown-divider"></div>
 				    <%= link_to "Déconnexion", destroy_user_session_path, method: "delete", class: "dropdown-item"%>
