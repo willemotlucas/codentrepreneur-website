@@ -25,12 +25,12 @@ h1, h2, h3, h4, h5, h6 {
 /*
  * Navbar style
 */
-a.btn-outline-success {
+.btn-outline-success {
 	color: #2BDE73 !important;
 	border: 1px solid #2BDE73;
 }
 
-a.btn-outline-success:hover, a.btn-success {
+.btn-outline-success:hover, .btn-success {
 	color: #fff !important;
 	background-color: #2BDE73;
 	border-color: #2BDE73;
