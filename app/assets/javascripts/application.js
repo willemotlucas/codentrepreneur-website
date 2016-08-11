@@ -19,4 +19,5 @@
 //= require_tree .
 //= require toastr
 //= require navbar
+//= require my_account
 //= require free_project
