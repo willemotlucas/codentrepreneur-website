@@ -1,0 +1,25 @@
+fr:
+  time:
+      formats:
+        short: "%d %B %Y"
+  errors:
+      format: '%{message}'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Veuillez saisir votre adresse email"
+              taken: "Cette adresse email est déjà utilisée"
+              invalid: "L'adresse email saisie est invalide"
+            password:
+              blank: "Veuillez saisir un mot de passe"
+              confirmation: "La confirmation du mot de passe ne correspond pas"
+              too_short: "Votre mot de passe est trop court (6 caractères min.)"
+            password_confirmation:
+              blank: "Veuillez confirmer votre mot de passe"
+            first_name:
+              blank: "Veuillez saisir votre prénom"
+            last_name:
+              blank: "Veuillez saisir votre nom"

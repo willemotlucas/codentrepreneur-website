@@ -1,0 +1,61 @@
+<div class="row">
+	<div class="col col-lg-12">
+		<div class="text-xs-center">
+			<%= image_tag gravatar_url(current_user, 150), class: "img-circle img-responsive" %>
+		</div>
+	</div>
+</div>
+
+<%= form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+  	
+  	<%= render partial: "common/devisealerts", object: current_user, as: 'resource' %>	
+
+  	<div class="row">
+		<h5>Informations personnelles</h5>
+		<div class="col col-lg-6">
+			<div class="form-group">
+				<%= f.label :first_name, "Prénom" %><br>
+		    	<%= f.text_field :first_name, class: "form-control" %>
+			</div>	
+		</div>
+		<div class="col col-lg-6">
+			<div class="form-group">
+			    <%= f.label :last_name, "Nom" %><br>
+			    <%= f.text_field :last_name, class: "form-control" %>
+			</div>
+		</div>			
+		<div class="col col-lg-6">
+			<div class="form-group">
+				<%= f.label :email, "Email" %><br>
+		    	<%= f.email_field :email, class: "form-control" %>
+			</div>	
+		</div>		
+	</div>
+	<div class="row">
+		<h5>Mot de passe - <small>Il n'est pas obligatoire de le modifier</small></h5>
+		<div class="col col-lg-6">
+			<div class="form-group">
+				<%= f.label :password, "Nouveau mot de passe" %><br>
+		    	<%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+			</div>	
+		</div>
+		<div class="col col-lg-6">
+			<div class="form-group">
+			    <%= f.label :password_confirmation, "Confirmer le nouveau mot de passe" %><br>
+			    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+			</div>
+		</div>			
+	</div>
+	<div class="row">
+		<h5>Confirmation des changements</h5>
+		<div class="col col-lg-6">
+			<div class="form-group">
+				<%= f.label :current_password, "Mot de passe actuel" %><br>
+		    	<%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+			</div>	
+		</div>
+	</div>
+	<div class="col col-lg-12">
+		<%= f.submit "Sauvegarder", class: "btn btn-success pull-xs-right" %>
+	</div>
+<% end %>

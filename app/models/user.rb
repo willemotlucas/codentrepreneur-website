@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Validations
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
   before_save :generate_referral_code
 
   # Include default devise modules. Others available are:

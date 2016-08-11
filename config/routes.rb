@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :free_project, only: [:show] do 
 	resources :step, only: [:show]
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :paid_project, only: [:show] do 
 	resources :step, only: [:show]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: "pages#index"
 
   get "preorder_project/:id" => "preorder_project#show", as: "preorder_project"
@@ -19,7 +19,5 @@ Rails.application.routes.draw do
 
   get "projects" => "pages#projects", as: "projects"
 
-  #get "free_project/:id" => "free_project#show", as: "free_project"
-
-  #get "step/:id" => "step#show", as: "step"
+  get 'my_account' => "my_account#index", as: "my_account"
 end
