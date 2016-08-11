@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col col-lg-12">
+		<h4>Historique de vos paiements</h4>
+		<div class="table-responsive">
+		  <table class="table">
+		    <thead class="thead-default">
+			    <tr>
+			      <th>Date</th>
+			      <th>Nom du projet</th>
+			      <th>Prix du projet</th>
+			      <th>Code parrainage utilisé</th>
+			      <th>Montant du paiement</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<% current_user.payments.order("created_at DESC").each do |p| %>
+					<tr>
+						<td><%= I18n.localize p.created_at, format: :short %></td>
+						<td><%= p.paymentable.title %></td>
+						<td><%= p.paymentable.price %>€</td>
+						<td>Aucun</td>
+						<td><%= p.amount %>€</td> 
+					</tr>
+				<% end %>
+			</tbody>
+		  </table>
+		</div>
+		<% if current_user.payments.count == 0 %>
+			<div class="text-xs-center">
+				<p>Vous n'avez effectué aucun paiement.</p>
+			</div>
+		<% end %>
+	</div>
+</div>

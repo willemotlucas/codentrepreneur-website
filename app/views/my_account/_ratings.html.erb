@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="col col-lg-12">
+		<h4>Historique de vos avis</h4>
+		<div class="table-responsive">
+		  <table class="table">
+		    <thead class="thead-default">
+			    <tr>
+			      <th>Date</th>
+			      <th>Nom du projet</th>
+			      <th>Note</th>
+			      <th>Commentaire</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<% current_user.ratings.order("created_at DESC").each do |rating| %>
+					<tr>
+						<td><%= I18n.localize rating.created_at, format: :short %></td>
+						<td><%= rating.ratingable.title %></td>
+						<td><%= rating.note %>/5</td>
+						<td><%= rating.comment %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		  </table>
+		</div>
+		<% if current_user.ratings.count == 0 %>
+			<div class="text-xs-center">
+				<p>Vous n'avez laissé aucun avis.</p>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col col-lg-12">
+		<h4>Projets non notés</h4>
+		<div class="table-responsive">
+		  <table class="table">
+		    <thead class="thead-default">
+			    <tr>
+			      <th>Nom du projet</th>
+			      <th>Noter</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<% current_user.subscriptions.each do |sub| %>
+					<% if !current_user.ratings.where(ratingable_type: sub.subscriptionable_type, ratingable_id: sub.subscriptionable_id).exists? %>
+						<tr>
+							<td><%= sub.subscriptionable.title %></td>
+							<td><%= link_to "Noter", sub.subscriptionable %></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		  </table>
+		</div>
+	</div>
+</div>
