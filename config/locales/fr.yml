@@ -19,6 +19,8 @@ fr:
               too_short: "Votre mot de passe est trop court (6 caractères min.)"
             password_confirmation:
               blank: "Veuillez confirmer votre mot de passe"
+            current_password:
+              blank: "Veuillez saisir votre mot de passe"
             first_name:
               blank: "Veuillez saisir votre prénom"
             last_name:
