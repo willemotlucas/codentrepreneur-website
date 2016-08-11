@@ -34,7 +34,7 @@
 								</p>
 								<div class="list-group">
 								  <% task.steps.order("step_order ASC").each do |step| %>
-								  	<% if @project.class.to_s == "FreeProject" %>
+								  	<% if @project.is_a FreeProject %>
 								  		<%= link_to free_project_step_path(@project, step), class: "list-group-item" do %>
 									  		<% if step.video? %>
 											  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
@@ -42,7 +42,7 @@
 										  		<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
 										  	<% end %>
 									  	<% end %>
-								  	<% elsif @project.class.to_s == "PaidProject" %>
+								  	<% elsif @project.is_a PaidProject %>
 								  		<%= link_to paid_project_step_path(@project, step), class: "list-group-item" do %>
 									  		<% if step.video? %>
 												  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
@@ -88,9 +88,9 @@
 				  </div>
 				</div>
 				<div class="col col-xs-12 col-lg-3">
-					<% if @project.class.to_s == "FreeProject" %>
+					<% if @project.is_a? FreeProject %>
 						<%= render partial: "free_project/side_details" %>
-					<% elsif @project.class.to_s == "PaidProject" %>
+					<% elsif @project.is_a? PaidProject %>
 						<%= render partial: "paid_project/side_details" %>
 					<% end %>
 				</div>	

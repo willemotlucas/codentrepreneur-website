@@ -18,12 +18,12 @@ class StepController < ApplicationController
 		end
 
 		def check_subscription
-			if @step.task.taskable.class.to_s == "FreeProject"
+			if @step.task.taskable.is_a? FreeProject
 				if !current_user.subscriptions.exists?(subscriptionable_type: @step.task.taskable_type, subscriptionable_id: @step.task.taskable_id)
 					print("Not subscribed yet")
 					Subscription.create(user: current_user, subscriptionable: @step.task.taskable)
 				end
-			elsif @step.task.taskable.class.to_s == "PaidProject"
+			elsif @step.task.taskable.is_a? PaidProject
 				if current_user.subscriptions.exists?(subscriptionable_type: @step.task.taskable_type, subscriptionable_id: @step.task.taskable_id)
 					# Redirect to payment page
 				end
