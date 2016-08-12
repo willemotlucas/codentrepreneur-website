@@ -26,6 +26,15 @@ class User < ApplicationRecord
   # User type enumeration
   enum user_role: {normal: "normal", admin: "admin"}
 
+  # Use by Active Admin to better display the record
+  def display_name
+    first_name + " " + last_name + " - " + email
+  end 
+
+  def full_name
+    first_name + " " + last_name
+  end
+
   private
   	def generate_referral_code
   		referral_code = ""

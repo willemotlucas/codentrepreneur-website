@@ -8,4 +8,8 @@ class Task < ApplicationRecord
 	# Relationships
   	belongs_to :taskable, polymorphic: true
   	has_many :steps
+
+  	def display_name
+  		taskable.title + " - " + title
+  	end
 end

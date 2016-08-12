@@ -32,12 +32,12 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name:      ENV['SENDMAIL_USERNAME'],
-    password:       ENV['SENDMAIL_PASSWORD'],
-    domain:         ENV['MAIL_HOST'],
+    user_name:      'willemotlucas@gmail.com',
+    password:       '.1an=04*',
+    domain:         'localhost',
     address:       "smtp.gmail.com",
     port:          "587",
     authentication: :plain,
@@ -66,5 +66,4 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Devise configuration for mailer
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

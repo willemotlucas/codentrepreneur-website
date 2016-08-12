@@ -13,7 +13,7 @@
 							<h2 class="feature-card-title"><%= @free_project.title %></h2>
 							<p class="feature-card-details"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de vidéos</p>
 							<% if @free_project.ratings.count > 0 %>
-								<p class="feature-card-rating"><%= render partial: 'common/ratings', object: project.ratings %> - <%= link_to "Voir tous les avis", free_project_path(@free_project, anchor: "ratings"), class: "feature-card-link" %></p>
+								<p class="feature-card-rating"><%= render partial: 'common/ratings', object: @free_project.ratings %> - <%= link_to "Voir tous les avis", free_project_path(@free_project, anchor: "ratings"), class: "feature-card-link" %></p>
 							<% else %>
 								<p class="feature-card-rating">Pas encore d'avis</p>
 							<% end %>
