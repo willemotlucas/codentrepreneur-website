@@ -1,6 +1,5 @@
 class ChargesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :retrieve_project, only: [:create]
 
 	def new
 	end
@@ -25,7 +24,8 @@ class ChargesController < ApplicationController
 			    :amount => amount.to_i, # amount in cents, again
 			    :currency => "eur",
 				:source => params[:stripeToken],
-			  	:description => "Précommande de la formation #{project.title} par #{current_user.email}"
+			  	:description => "Précommande #{project.title} par #{current_user.email}",
+			  	:receipt_email => current_user.email
 			)
 
 			  if charge.paid
@@ -65,7 +65,8 @@ class ChargesController < ApplicationController
 			    :amount => amount.to_i, # amount in cents, again
 			    :currency => "eur",
 			    :source => params[:stripeToken],
-			    :description => "Achat de la formation #{project.title} par #{current_user.email}"
+			    :description => "Achat #{project.title} par #{current_user.email}",
+			    :receipt_email => current_user.email
 			  )
 
 			  if charge.paid
