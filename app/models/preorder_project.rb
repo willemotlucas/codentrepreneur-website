@@ -12,6 +12,8 @@ class PreorderProject < ApplicationRecord
 	has_many :payments, as: :paymentable, dependent: :destroy
 	belongs_to :paidProject, optional: true
 
+	alias_attribute :price, :preorder_price
+
 	def tags
 		unless tags_list.blank?
 			tags_list.gsub(" ","").split(',')

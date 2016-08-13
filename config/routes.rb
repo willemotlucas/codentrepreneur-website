@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', sessions: 'sessions' }
 
   resources :free_project, only: [:show] do 
 	resources :step, only: [:show]
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get 'my_account' => "my_account#index", as: "my_account"
 
-  post 'preorder_project/:id/payment' => "charge#create", as: "preorder_project_payment"
+  post 'preorder_project/:id/payment' => "charges#preorder_project"
 
-  post 'paid_project/:id/payment' => "charge#create", as: "paid_project_payment"
+  post 'paid_project/:id/payment' => "charges#paid_project"
 end
