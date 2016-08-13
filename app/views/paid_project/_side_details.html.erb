@@ -10,10 +10,14 @@
   <% if @project.tasks.count > 0 %>
   <p class="text-xs-center">
   	<% if user_signed_in? && current_user.subscriptions.where(subscriptionable_type: "PaidProject", subscriptionable_id: @project.id).exists? %>
-		<%= link_to "Commencer la formation", paid_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success" %>
-	<% else %>
-		<a href="#" class="btn btn-success">Acheter pour <br/><strong><%= @project.price %>€</strong></a>
-	<% end %>
+		<%= link_to "Commencer la formation", paid_project_step_path(@project, @project.tasks.order("task_order ASC").first.steps.order("step_order ASC").first), class: "btn btn-success btn-lg" %>
+	  <% elsif user_signed_in? %>
+      <button class="btn btn-success btn-lg" data-toggle="modal" data-target=".bd-example-modal-md">Acheter pour <br/><strong><%= @project.price %>€</strong></button>
+    <% else %>
+      <%= link_to new_user_session_path, class: "btn btn-success btn-lg" do %>
+        Acheter pour <br/><strong><%= @project.price %>€  
+      <% end %>
+	  <% end %>
   </p>
   <% end %>
 </div>

@@ -19,32 +19,38 @@ class ChargesController < ApplicationController
 	  # TO DO : Add verification of referral code
 	  # If correct, amount = amount - 500
 
-	  # customer = Stripe::Customer.create(
-	  #   :email => current_user.email,
-	  #   :source  => params[:stripeToken]
-	  # )
+	  payment = Payment.new(paymentable: project, user: current_user, amount: amount/100)
 
-	  charge = Stripe::Charge.create(
-	    :amount => amount.to_i, # amount in cents, again
-	    :currency => "eur",
-	    :source => params[:stripeToken],
-	    :description => "Achat de la formation #{project.title}"
-	  )
+	  if payment.save 
+	  	charge = Stripe::Charge.create(
+		    :amount => amount.to_i, # amount in cents, again
+		    :currency => "eur",
+			:source => params[:stripeToken],
+		  	:description => "Précommande de la formation #{project.title} par #{current_user.email}"
+		)
 
-	  if charge
-	  	Payment.create(paymentable: project, user: current_user, amount: amount/100)
-	  	flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants"
+		  if charge.paid
+		  	payment.stripe_charge_id = charge.id
+		  	payment.save
+		  	flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants."
+		  end
 	  end
 
 	  redirect_to preorder_project_path(project)
 
 	rescue Stripe::CardError => e
-	  flash[:error] = e.message
-	  redirect_to preorder_project_path(project)
+		payment.destroy
+	  	flash[:error] = "Une erreur est survenue pendant le paiement. Votre carte n'a pas été débitée."
+	  	redirect_to preorder_project_path(project)
 	end
 
 	def paid_project
-	  project = PaidProject.find(params[:preorder_project_id])
+	  project = PaidProject.find(params[:paid_project_id])
+
+	  if Payment.where(paymentable: project, user: current_user).exists? 
+	  	flash[:error] = "La formation a déjà été achetée"
+	  	redirect_to paid_project_path(project)
+	  end
 
 	  # Amount in cents
 	  amount = project.price * 100
@@ -52,22 +58,31 @@ class ChargesController < ApplicationController
 	  # Add verification of referral code
 	  # If correct, amount = amount - 500
 
-	  charge = Stripe::Charge.create(
-	    :amount => amount.to_i, # amount in cents, again
-	    :currency => "eur",
-	    :source => params[:stripeToken],
-	    :description => "Achat de la formation #{project.title}"
-	  )
+	  payment = Payment.new(paymentable: project, user: current_user, amount: amount/100)
+	  subscription = Subscription.new(subscriptionable: project, user: current_user)
 
-	  if charge
-	  	Payment.create(paymentable: project, user: current_user, amount: amount/100)
-	  	Subscription.create(subscriptionable: project, user: current_user)
-	  	flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants"
+	  if payment.save && subscription.save
+		  charge = Stripe::Charge.create(
+		    :amount => amount.to_i, # amount in cents, again
+		    :currency => "eur",
+		    :source => params[:stripeToken],
+		    :description => "Achat de la formation #{project.title} par #{current_user.email}"
+		  )
+
+		  if charge.paid
+		  	payment.stripe_charge_id = charge.id
+		  	payment.save
+		  	flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants."	
+		  end
 	  end
 
-	rescue Stripe::CardError => e
-	  flash[:error] = e.message
 	  redirect_to paid_project_path(project)
+
+	rescue Stripe::CardError => e
+		payment.destroy
+		subscription.destroy
+	  	flash[:error] = "Une erreur est survenue pendant le paiement. Votre carte n'a pas été débitée."
+	  	redirect_to paid_project_path(project)
 	end
 
 end

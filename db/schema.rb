@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812180331) do
+ActiveRecord::Schema.define(version: 20160813150131) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160812180331) do
     t.decimal  "amount",           precision: 5, scale: 2, null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "stripe_charge_id"
     t.index ["paymentable_id", "paymentable_type", "user_id"], name: "index_payments_on_paymentable_id_and_type_and_user", unique: true, using: :btree
     t.index ["paymentable_type", "paymentable_id"], name: "index_payments_on_paymentable_type_and_paymentable_id", using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree

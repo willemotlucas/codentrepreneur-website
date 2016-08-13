@@ -1,0 +1,7 @@
+<%= form_tag("/paid_project/" + @project.friendly_id + "/payment", method: :post, id: "payment-form") do %>
+
+  <input type="hidden" name="paid_project_id" value="<%= @project.id %>">
+
+  <%= render partial: 'common/payment_form', object: @project, as: "project" %>
+
+<% end %>

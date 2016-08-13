@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col col-xs-12">
+      <div class="col col-xs-12">
+        <div class="form-inline">
+          <div class="form-group">
+            <label><strong>Projet : </strong></label>
+            <p class="form-control-static form-control-title"><%= project.title%></p>
+          </div> 
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-xs-12">
+    <div class="col col-sm-5 col-xs-12">
+      <div class="form-group">
+        <label><strong>Montant du paiement</strong></label>
+        <p class="form-control-static payment-amount"><%= project.price %>€</p>
+      </div>
+    </div> 
+
+    <div class="col col-sm-7 col-xs-12">
+      <label><strong>Code parrainage</strong></label>
+      <div class="row">
+        <div class="form-inline">
+          <div class="col col-sm-5 col-xs-5">
+              <input type="text" name="referral_code" class="form-control" maxlength="8" size="10">
+          </div>
+          <div class="col col-sm-4 col-xs-4">
+            <button type="button" class="btn btn-outline-success">Appliquer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-xs-12">
+    <hr/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-xs-12">
+    <div class="col col-xs-12">
+      <p class="payment-errors"></p>        
+    </div>
+  </div>
+</div>
+
+<div class="row row-card-number">
+  <div class="col col-sm-6 col-xs-8">
+    <div class="col col-xs-12">
+      <div class="form-group">
+        <label><strong>Numéro de carte</strong></label>
+        <input type="text" class="form-control card-number" placeholder="1234 1234 1234 1234" required>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-expiry-date">
+  <div class="col col-xs-12">
+    <div class="col col-sm-5 col-xs-12">
+      <label><strong>Date d'expiration</strong></label>
+      <div class="row">
+        <div class="form-inline form-group-date">
+          <div class="col col-xs-3 col-sm-4 input-left">
+            <input type="text" class="form-control card-expiry-month" size="2" data-stripe="exp_month" placeholder="MM" required>
+          </div>
+          <div class="col col-xs-3 col-sm-4 input-right">
+            <input type="text" class="form-control card-expiry-year" size="2" data-stripe="exp_year" placeholder="AA" required>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-4 col-xs-4">
+      <div class="form-group form-group-cvc">
+          <label><strong>CVC</strong></label>
+          <input type="text" class="form-control card-cvc" maxlength="4" size="3"  data-stripe="cvc" required>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-xs-8 col-xs-offset-2">
+    <button type="submit" class="btn btn-success btn-lg btn-block payment-btn">
+      <i class="fa fa-lock" aria-hidden="true"></i>
+      Payer <%= project.price %>€
+    </button>      
+  </div>
+</div>
