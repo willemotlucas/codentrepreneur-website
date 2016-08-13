@@ -11,4 +11,18 @@ class PreorderProject < ApplicationRecord
 	# Relationships
 	has_many :payments, as: :paymentable, dependent: :destroy
 	belongs_to :paidProject, optional: true
+
+	def tags
+		unless tags_list.blank?
+			tags_list.gsub(" ","").split(',')
+		end
+	end
+
+	def quantity_remaining
+		if quantity > -1
+			quantity - payments.count
+		else
+			quantity
+		end
+	end
 end

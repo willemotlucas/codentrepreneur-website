@@ -6,7 +6,7 @@
 				<div class="feature-card">
 					<div class="col col-lg-6 col-xs-12">
 						<img class="feature-card-image img-fluid" src="http://placehold.it/600x350" alt="" />
-						<span class="tag tag-default">Angular.js</span> <span class="tag tag-default">Ionic</span>  <span class="tag tag-default">Firebase</span> <span class="tag tag-default">Facebook API</span>
+						<%= render partial: "common/tags", object: @featured_project.tags, as: "tags" %>
 					</div>
 					<div class="col col-lg-6 col-xs-12">
 						<div class="feature-card-block">

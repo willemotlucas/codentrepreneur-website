@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809212855) do
+ActiveRecord::Schema.define(version: 20160812180331) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160809212855) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "slug"
+    t.string   "tags_list"
     t.index ["slug"], name: "index_free_projects_on_slug", unique: true, using: :btree
   end
 
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160809212855) do
     t.datetime "updated_at",                                                                null: false
     t.integer  "preorder_project_id"
     t.string   "slug"
+    t.string   "tags_list"
     t.index ["preorder_project_id"], name: "index_paid_projects_on_preorder_project_id", using: :btree
     t.index ["slug"], name: "index_paid_projects_on_slug", unique: true, using: :btree
   end
@@ -115,6 +117,8 @@ ActiveRecord::Schema.define(version: 20160809212855) do
     t.datetime "created_at",                                                              null: false
     t.datetime "updated_at",                                                              null: false
     t.string   "slug"
+    t.string   "tags_list"
+    t.integer  "quantity",                                                default: -1
     t.index ["slug"], name: "index_preorder_projects_on_slug", unique: true, using: :btree
   end
 

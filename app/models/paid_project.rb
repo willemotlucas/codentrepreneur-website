@@ -13,4 +13,10 @@ class PaidProject < ApplicationRecord
 	has_many :payments, as: :paymentable, dependent: :destroy
 	has_many :ratings, as: :ratingable, dependent: :destroy
 	has_one :preorderProject
+
+	def tags
+		unless tags_list.blank?
+			tags_list.gsub(" ","").split(',')
+		end
+	end
 end

@@ -6,12 +6,16 @@
 				<div class="feature-card">
 					<div class="col col-lg-6 col-xs-12">
 						<img class="feature-card-image img-fluid" src="http://placehold.it/600x350" alt="" />
-						<span class="tag tag-default">HTML</span> <span class="tag tag-default">CSS</span> <span class="tag tag-default">Bootstrap</span> <span class="tag tag-default">MailChimp</span> <span class="tag tag-default">Google Anlytics</span>
+						<%= render partial: "common/tags", object: @free_project.tags, as: "tags" %>
 					</div>
 					<div class="col col-lg-6 col-xs-12">
 						<div class="feature-card-block">
 							<h2 class="feature-card-title"><%= @free_project.title %></h2>
-							<p class="feature-card-details"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de vidéos</p>
+							<p class="feature-card-details">
+								<% if !@free_project.duration.blank? %>
+									<i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @free_project.duration %> de vidéos
+								<% end %>
+							</p>
 							<% if @free_project.ratings.count > 0 %>
 								<p class="feature-card-rating"><%= render partial: 'common/ratings', object: @free_project.ratings %> - <%= link_to "Voir tous les avis", free_project_path(@free_project, anchor: "ratings"), class: "feature-card-link" %></p>
 							<% else %>
