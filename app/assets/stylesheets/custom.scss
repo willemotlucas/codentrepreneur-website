@@ -12,7 +12,7 @@
 	padding-bottom: 4%;
 }
 
-.edit_user .row {
+.edit_user .row, #payment-form .row {
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-outline-success {
 	color: #2BDE73 !important;
 	border: 1px solid #2BDE73;
+	background-color: transparent;
 }
 
 .btn-outline-success:hover, .btn-success {
@@ -267,4 +268,11 @@ a.list-group-item:hover {
 	border: 1px solid #DADADA;
 	border-radius: 10px;
 	padding: 4%;
+}
+
+/*
+ * Custom Modal
+ */
+.modal-body .row {
+	padding-top: 0px;
 }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -20,4 +21,8 @@ Rails.application.routes.draw do
   get "projects" => "pages#projects", as: "projects"
 
   get 'my_account' => "my_account#index", as: "my_account"
+
+  post 'preorder_project/:id/payment' => "charge#create", as: "preorder_project_payment"
+
+  post 'paid_project/:id/payment' => "charge#create", as: "paid_project_payment"
 end

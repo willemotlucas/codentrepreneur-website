@@ -25,9 +25,80 @@
 			      <p class="card-text"><i class="fa fa-code fa-1x"></i> Accès au code source</p>
 			      <p class="card-text"><i class="fa fa-comment fa-1x"></i> Une communauté pour s'entraider</p>
 			      <p class="card-price text-xs-center"><s><%= @preorder_project.original_price %>€</s> <%= @preorder_project.preorder_price%>€</p>
-			      <p class="text-xs-center"><a href="#" class="btn btn-success">Précommander la formation</a></p>
+			      <% if @preorder_project.quantity_remaining > 0 || @preorder_project.quantity_remaining == -1 %>
+			      	<p class="text-xs-center"><nutton class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-md">Précommander la formation</button></p>
+			      	<p class="card-price text-xs-center"><%= @preorder_project.quantity_remaining %> restantes</p>
+			      <% elsif @preorder_project.quantity_remaining == 0 %>
+					<p class="text-xs-center"><a href="#" class="btn btn-success disabled">Pré-commandes épuisées !</a></p>
+			      <% end %>
 			    </div>
 			</div>			
 		</div>
 	</div>
 </section>
+
+<div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	        <h4 class="modal-title text-xs-center">Paiement</h4>
+      	</div>
+      	<div class="modal-body">
+      		<div class="row">
+      			<%= render partial: "payment" %>
+      		</div>
+      	</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  Stripe.setPublishableKey('pk_test_gAYcDnLR6ZYr0pE9MI9pc1PP');
+
+  $(function() {
+	  var $form = $('#payment-form');
+	  $form.submit(function(event) {
+	    // Disable the submit button to prevent repeated clicks:
+	    $form.find('.payment-btn').prop('disabled', true);
+
+	    // Request a token from Stripe:
+	    Stripe.card.createToken(
+	    	number: $('.card-number').val(),
+  			cvc: $('.card-cvc').val(),
+  			exp_month: $('.card-expiry-month').val(),
+  			exp_year: $('.card-expiry-year').val()
+  			}, stripeResponseHandler);
+
+	    // Prevent the form from being submitted:
+	    return false;
+	  });
+	});
+
+  function stripeResponseHandler(status, response) {
+	  // Grab the form:
+	  var $form = $('#payment-form');
+
+	  if (response.error) { // Problem!
+
+	    // Show the errors on the form:
+	    $form.find('.payment-errors').text(response.error.message);
+	    $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+	  } else { // Token was created!
+
+	    // Get the token ID:
+	    var token = response.id;
+
+	    // Insert the token ID into the form so it gets submitted to the server:
+	    $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+	    // Submit the form:
+	    $form.get(0).submit();
+	  }
+	};
+</script>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>

@@ -3,19 +3,26 @@ class ChargesController < ApplicationController
 	end
 
 	def create
+	  preorder_project = PreorderProject.find(params[:preorder_project_id])
+
 	  # Amount in cents
-	  @amount = 500
+	  amount = preorder_project.price * 100
+
+	  # Add verification of referral code
+	  # If correct, amount = amount - 500
+
+
 
 	  customer = Stripe::Customer.create(
-	    :email => params[:stripeEmail],
+	    :email => current_user.email,
 	    :source  => params[:stripeToken]
 	  )
 
 	  charge = Stripe::Charge.create(
 	    :customer    => customer.id,
-	    :amount      => @amount,
-	    :description => 'Rails Stripe customer',
-	    :currency    => 'usd'
+	    :amount      => amount,
+	    :description => 'Achat de la formation #{preorder_project.title}',
+	    :currency    => 'eur'
 	  )
 
 	rescue Stripe::CardError => e
