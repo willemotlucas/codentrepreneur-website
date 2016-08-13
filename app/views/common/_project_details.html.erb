@@ -30,8 +30,7 @@
 				  			<% @project.tasks.order("task_order ASC").each do |task| %>
 							  <li class="list-group-item">
 							    <h5 class="list-group-item-heading"><%= task.title %></h5>
-							    <p class="list-group-item-text"><%= task.description %>
-								</p>
+							    <p class="list-group-item-text"><%= task.description %></p>
 								<div class="list-group">
 								  <% task.steps.order("step_order ASC").each do |step| %>
 								  	<% if @project.is_a? FreeProject %>
@@ -42,15 +41,26 @@
 										  		<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
 										  	<% end %>
 									  	<% end %>
+								  	
 								  	<% elsif @project.is_a? PaidProject %>
-								  		<%= link_to paid_project_step_path(@project, step), class: "list-group-item" do %>
-									  		<% if step.video? %>
+								  		<% if user_signed_in? && current_user.subscriptions.where(subscriptionable: @project).exists? %>
+									  		<%= link_to paid_project_step_path(@project, step), class: "list-group-item" do %>
+										  		<% if step.video? %>
+													<i class="fa fa-play fa-1x"></i> <%= step.title %>
+												<% else %>
+													<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
+												<% end %>
+											<% end %>
+									  	<% else %>
+									  		<div class="list-group-item">
+									  			<% if step.video? %>
 												  	<i class="fa fa-play fa-1x"></i> <%= step.title %>
 											  	<% else %>
 											  		<i class="fa fa-book" aria-hidden="true"></i> <%= step.title %>
 											  	<% end %>
-										  	<% end %>
-								  		<% end %>
+											</div>
+									  	<% end %>
+									  <% end %>
 								  <% end %>
 								</div>
 							  </li>

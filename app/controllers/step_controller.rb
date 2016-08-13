@@ -20,12 +20,12 @@ class StepController < ApplicationController
 		def check_subscription
 			if @step.task.taskable.is_a? FreeProject
 				if !current_user.subscriptions.exists?(subscriptionable_type: @step.task.taskable_type, subscriptionable_id: @step.task.taskable_id)
-					print("Not subscribed yet")
 					Subscription.create(user: current_user, subscriptionable: @step.task.taskable)
 				end
 			elsif @step.task.taskable.is_a? PaidProject
-				if current_user.subscriptions.exists?(subscriptionable_type: @step.task.taskable_type, subscriptionable_id: @step.task.taskable_id)
-					# Redirect to payment page
+				unless current_user.subscriptions.exists?(subscriptionable_type: @step.task.taskable_type, subscriptionable_id: @step.task.taskable_id)
+					flash[:error] = "Vous devez acheter la formation pour y accéder."
+					redirect_to paid_project_path(@step.task.taskable)
 				end
 			end
 		end
