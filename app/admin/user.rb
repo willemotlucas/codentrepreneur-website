@@ -13,4 +13,11 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
+	sidebar "Relations de l'utilisateur", only: [:show, :edit] do
+	    ul do
+	      li link_to "Paiements",    admin_user_payments_path(user)
+	      li link_to "Inscriptions", admin_user_subscriptions_path(user)
+	    end
+	end
+
 end

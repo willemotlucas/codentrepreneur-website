@@ -15,6 +15,8 @@ ActiveAdmin.register Step do
 
 permit_params :title, :step_type, :video_url, :video_duration, :slug, :explanations, :step_order
 
+belongs_to :task
+
 controller do
   def find_resource
     scoped_collection.friendly.find(params[:id])

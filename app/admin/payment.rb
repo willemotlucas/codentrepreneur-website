@@ -12,6 +12,18 @@ ActiveAdmin.register Payment do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+	permit_params :user, :paymentable_identifier, :amount
 
+	belongs_to :user
+
+	form do |f|
+		f.inputs "Payment" do 
+			f.input :user, as: :select, collection: User.all
+			f.input :paymentable_identifier, label: 'Projet', as: :select, collection: (PreorderProject.all + PaidProject.all).map { |i| [ "#{i.class.to_s} - #{i.title}", "#{i.class.to_s}-#{i.id}"] }
+			f.input :amount
+		end
+
+		f.actions
+	end
 
 end

@@ -12,6 +12,17 @@ ActiveAdmin.register Subscription do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+	permit_params :user, :subscriptionable_identifier
 
+    belongs_to :user
+
+	form do |f|
+		f.inputs "Subscription" do 
+			f.input :user
+			f.input :subscriptionable_identifier, label: 'Projet', as: :select, collection: (FreeProject.all + PaidProject.all).map { |i| [ "#{i.class.to_s} - #{i.title}", "#{i.class.to_s}-#{i.id}"] }
+		end
+
+		f.actions
+	end
 
 end

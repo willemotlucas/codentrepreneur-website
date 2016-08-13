@@ -13,12 +13,18 @@ ActiveAdmin.register PaidProject do
 #   permitted
 # end
 
-permit_params :title, :image_url, :video_url, :short_description, :duration, :featured, :active, :long_description, :slug, :price
+	permit_params :title, :image_url, :video_url, :short_description, :duration, :featured, :active, :long_description, :slug, :price
 
-controller do
-  def find_resource
-    scoped_collection.friendly.find(params[:id])
-  end
-end
+	sidebar "Relations du projet", only: [:show, :edit] do
+	    ul do
+	      #li link_to "Inscriptions", admin_paid_project_subscriptions_path(paid_project)
+	    end
+	end
+
+	controller do
+	  def find_resource
+	    scoped_collection.friendly.find(params[:id])
+	  end
+	end
 
 end
