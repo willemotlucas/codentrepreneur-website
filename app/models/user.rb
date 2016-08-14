@@ -41,7 +41,7 @@ class User < ApplicationRecord
   		loop do
   			o = [('A'..'Z'), ('0'..'9')].map { |i| i.to_a }.flatten
 			referral_code = (0...8).map { o[rand(o.length)] }.join
-			break if User.where(referral_code: referral_code).first == nil
+			break if !User.where(referral_code: referral_code).exists?
 		end
 		self.referral_code = referral_code
   	end
