@@ -1,5 +1,5 @@
-$(document).ready(function(){
-    $('.dropdown-toggle').dropdown()
+document.addEventListener("turbolinks:load", function() {
+    $('.dropdown-toggle').dropdown();
 
     /*var $navbar = $("#navbar"),
         y_pos = $navbar.offset().top,
@@ -14,4 +14,4 @@ $(document).ready(function(){
             $navbar.removeClass("sticky");
         }
     });*/
-});
+})

@@ -11,13 +11,18 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
+
 //= require tether
 //= require bootstrap
-//= require jquery_ujs
-//= require turbolinks
 //= require jquery-readyselector
 //= require_tree .
 //= require toastr
 //= require navbar
 //= require my_account
+//= require stripe_payment
+//= require referral
 //= require free_project
+
+//= require turbolinks

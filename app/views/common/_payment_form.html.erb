@@ -16,22 +16,38 @@
     <div class="col col-sm-5 col-xs-12">
       <div class="form-group">
         <label><strong>Montant du paiement</strong></label>
-        <p class="form-control-static payment-amount"><%= project.price %>€</p>
+        <p class="form-control-static payment-amount"><span id="project-price" class="project-price"><%= project.price %></span>€</p>
       </div>
     </div> 
 
     <div class="col col-sm-7 col-xs-12">
-      <label><strong>Code parrainage</strong></label>
-      <div class="row">
-        <div class="form-inline">
-          <div class="col col-sm-5 col-xs-5">
-              <input type="text" name="referral_code" class="form-control" maxlength="8" size="10">
-          </div>
-          <div class="col col-sm-4 col-xs-4">
-            <button type="button" class="btn btn-outline-success">Appliquer</button>
+      <% if current_user.referral_wallet == 0 %>
+        <label><strong>Code parrainage</strong></label>
+        <div class="row">
+          <div class="form-inline form-inline-referral">
+            <div class="col col-sm-5 col-xs-5">
+                <input type="text" name="referral_code" class="form-control" maxlength="8" size="10">
+            </div>
+            <div class="col col-sm-4 col-xs-4">
+              <button id="apply-referral-code" type="button" class="btn btn-outline-success">Appliquer</button>
+            </div>
           </div>
         </div>
-      </div>
+        <p class="referral-code-message"></p>
+      <% else %>
+        <label><strong>Cagnotte parrainage</strong></label>
+        <div class="row">
+          <div class="form-inline">
+            <div class="col col-sm-3 col-xs-3">
+                <p class="form-control-static wallet-amount"><span id="wallet-amount"><%= current_user.referral_wallet %></span>€</p>
+                <input type="hidden" name="use_referral_wallet" value="false">
+            </div>
+            <div class="col col-sm-4 col-xs-4">
+              <button id="use-referral-wallet" type="button" class="btn btn-outline-success">Utiliser</button>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -89,7 +105,7 @@
   <div class="col col-xs-8 col-xs-offset-2">
     <button type="submit" class="btn btn-success btn-lg btn-block payment-btn">
       <i class="fa fa-lock" aria-hidden="true"></i>
-      Payer <%= project.price %>€
+      Payer <span class="project-price"><%= project.price %></span>€
     </button>      
   </div>
 </div>

@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   post 'preorder_project/:id/payment' => "charges#preorder_project"
 
   post 'paid_project/:id/payment' => "charges#paid_project"
+
+  post 'referral_code/verify' => "referral#verify_availability"
 end

@@ -22,6 +22,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding-top: 2%;
 }
 
+.has-success {
+	border-color: #2BDE73;
+}
+
 /*
  * Navbar style
 */
@@ -275,4 +279,16 @@ a.list-group-item:hover {
  */
 .modal-body .row {
 	padding-top: 0px;
+}
+
+/*
+ * Referal wallet
+*/
+.referral-wallet-amount {
+	font-size: 4em;
+	color: #2BDE73;
+}
+
+.referral-wallet-sub {
+	font-size: 0.8em;
 }

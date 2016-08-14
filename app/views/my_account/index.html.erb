@@ -11,27 +11,31 @@
                   <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i><br/>Paiements
                 </a>
                 <a href="#" class="list-group-item vertical-tab text-xs-center">
+                  <i class="fa fa-heart fa-3x" aria-hidden="true"></i><br/>Parrainage
+                </a>
+                <a href="#" class="list-group-item vertical-tab text-xs-center">
                   <i class="fa fa-star fa-3x" aria-hidden="true"></i><br/>Avis
                 </a>
               </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
-                <!-- flight section -->
                 <div class="bhoechie-tab-content active">
                 	<%= render partial: "informations" %>
                 </div>
-                <!-- train section -->
                 <div class="bhoechie-tab-content">
                     <center>
                       <%= render partial: "payments" %>
                     </center>
                 </div>
-    
-                <!-- hotel search -->
                 <div class="bhoechie-tab-content">
-                    <center>
-					  <%= render partial: "ratings" %>
-                    </center>
+                  <center>
+                     <%= render partial: "referral" %>
+                  </center>
+                </div>
+                <div class="bhoechie-tab-content">
+                  <center>
+					           <%= render partial: "ratings" %>
+                  </center>
                 </div>
             </div>
 		</div>		

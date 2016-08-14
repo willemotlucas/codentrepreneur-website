@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="col col-lg-12">
+		<h4>Cagnotte de parrainage</h4>
+		<p class="referral-wallet-amount"><%= current_user.referral_wallet %>€</p>
+		<% if current_user.referral_wallet > 0 %>
+			<p class="referral-wallet-sub">A utiliser quand vous voulez, sur le prochain achat d'une formation !</p>
+		<% end %>
+		<p>Votre code parrain à communiquer : <strong><%= current_user.referral_code %></strong></p>
+		<p>Vous gagnez 5€ dans votre cagnotte à chaque fois qu'une personne achète un cours avec votre code parrain.</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col col-lg-12">
+		<h4>Liste des personnes parrainées</h4>
+		<div class="table-responsive">
+		  <table class="table">
+		    <thead class="thead-default">
+			    <tr>
+				    <th>Nom</th>
+				    <th>Date</th>
+				    <th>Nom du projet acheté</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<% @payments_as_referent.each do |p| %>
+					<tr>
+						<td><%= p.user.full_name %></td>
+						<td><%= I18n.localize p.created_at, format: :short %></td>
+						<td><%= p.paymentable.title %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		  </table>
+		</div>
+		<% if @payments_as_referent.count == 0 %>
+			<div class="text-xs-center">
+				<p>Vous n'avez parrainé personne. <br/> <br/>
+				Communiquez votre code parrain <strong><%= current_user.referral_code %></strong> à vos amis et gagnez 5€ lorsqu'ils l'utilisent pour le paiement d'une formation !</p>
+			</div>
+		<% end %>
+	</div>
+</div>

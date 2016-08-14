@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813150131) do
+ActiveRecord::Schema.define(version: 20160814165413) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -94,12 +94,16 @@ ActiveRecord::Schema.define(version: 20160813150131) do
     t.string   "paymentable_type"
     t.integer  "paymentable_id"
     t.integer  "user_id"
-    t.decimal  "amount",           precision: 5, scale: 2, null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.decimal  "amount",                 precision: 5, scale: 2, null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "stripe_charge_id"
+    t.string   "referral_code"
+    t.decimal  "referral_wallet_amount", precision: 5, scale: 2
     t.index ["paymentable_id", "paymentable_type", "user_id"], name: "index_payments_on_paymentable_id_and_type_and_user", unique: true, using: :btree
     t.index ["paymentable_type", "paymentable_id"], name: "index_payments_on_paymentable_type_and_paymentable_id", using: :btree
+    t.index ["referral_code"], name: "index_payments_on_referral_code", using: :btree
+    t.index ["user_id", "referral_code"], name: "index_payments_on_user_id_and_referral_code", unique: true, using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end
 
@@ -187,16 +191,16 @@ ActiveRecord::Schema.define(version: 20160813150131) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                                        null: false
-    t.string   "encrypted_password",                           null: false
-    t.string   "first_name",                                   null: false
-    t.string   "last_name",                                    null: false
+    t.string   "email",                                                                    null: false
+    t.string   "encrypted_password",                                                       null: false
+    t.string   "first_name",                                                               null: false
+    t.string   "last_name",                                                                null: false
     t.string   "user_role",              limit: 6
-    t.string   "referral_code",                                null: false
+    t.string   "referral_code",                                                            null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0, null: false
+    t.integer  "sign_in_count",                                            default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -205,8 +209,9 @@ ActiveRecord::Schema.define(version: 20160813150131) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+    t.decimal  "referral_wallet",                  precision: 5, scale: 2, default: "0.0"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["referral_code"], name: "index_users_on_referral_code", unique: true, using: :btree

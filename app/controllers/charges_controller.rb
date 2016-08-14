@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+	include ReferralHelper
+
 	before_action :authenticate_user!
 
 	def new
@@ -12,24 +14,59 @@ class ChargesController < ApplicationController
 	  		redirect_to preorder_project_path(project)
 	  	else
 	  	  	# Amount in cents
-		  	amount = project.preorder_price * 100
+		  	amount = project.price * 100
 
-			# TO DO : Add verification of referral code
-			# If correct, amount = amount - 500
+		  	referral_code = params[:referral_code]
+		  	use_referral_code = false
+		  	if !referral_code.blank? && is_valid_referral_code(referral_code)
+		  		use_referral_code = true
+		  		amount -= 500
+		  	end
 
-			# Charge the user
-		  	charge = Stripe::Charge.create(
-			    :amount => amount.to_i, # amount in cents, again
-			    :currency => "eur",
-				:source => params[:stripeToken],
-			  	:description => "Précommande #{project.title} par #{current_user.email}",
-			  	:receipt_email => current_user.email
-			)
+		  	# Check if user use his referral amount
+		  	use_referral_wallet = params[:use_referral_wallet] == "true" ? true : false
+		  	if !use_referral_code && use_referral_wallet
+		  		amount -= current_user.referral_wallet * 100
+		  		if amount <= 0
+		  			current_user.referral_wallet = amount.abs / 100
+		  			amount = 0
+		  		else
+		  			current_user.referral_wallet = 0
+		  		end
+		  	end
 
-		  	# Save the payment in database
-			if charge.paid
-				payment = Payment.create(paymentable: project, user: current_user, amount: amount/100, stripe_charge_id: charge.id)
-				flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants."
+			# Charge the user if amount > 0
+			if amount > 0
+			  	charge = Stripe::Charge.create(
+				    :amount => amount.to_i, # amount in cents, again
+				    :currency => "eur",
+					:source => params[:stripeToken],
+				  	:description => "Précommande #{project.title} par #{current_user.email}",
+				  	:receipt_email => current_user.email
+				)
+			end
+
+			if amount == 0 || charge.paid
+				payment = Payment.new(paymentable: project, user: current_user, amount: amount/100)
+				payment.stripe_charge_id = charge.id if charge != nil
+				if use_referral_code
+					payment.referral_code = referral_code
+
+					# Increase referral balance of 5€ for the referant
+					referent = User.where(referral_code: referral_code).first
+					if referent != nil
+						referent.referral_wallet += 5
+						referent.save
+						# TODO: Send an email to notify the increase
+					end
+				end
+				if use_referral_wallet
+					payment.referral_wallet_amount = project.price - (amount / 100)
+		  			current_user.save
+				end
+				payment.save
+				flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants." if charge != nil && charge.paid == true
+				flash[:success] = "Génial, vous avez bien précommandé la formation GRATUITEMENT !" if amount == 0
 			else
 				flash[:error] = "Une erreur est survenue pendant le paiement. Votre carte n'a pas été débitée."
 			end
@@ -53,22 +90,58 @@ class ChargesController < ApplicationController
 		  	# Amount in cents
 		  	amount = project.price * 100
 
-		  	# Add verification of referral code
-		  	# If correct, amount = amount - 500
+		  	referral_code = params[:referral_code]
+		  	use_referral_code = false
+		  	if !referral_code.blank? && is_valid_referral_code(referral_code)
+		  		use_referral_code = true
+		  		amount -= 500
+		  	end
 
-		  	# Charge the user
-		  	charge = Stripe::Charge.create(
-			    :amount => amount.to_i, # amount in cents, again
-			    :currency => "eur",
-				:source => params[:stripeToken],
-			  	:description => "Achat #{project.title} par #{current_user.email}",
-			  	:receipt_email => current_user.email
-			)
+		  	# Check if user use his referral amount
+		  	use_referral_wallet = params[:use_referral_wallet] == "true" ? true : false
+		  	if !use_referral_code && use_referral_wallet
+		  		amount -= current_user.referral_wallet * 100
+		  		if amount <= 0
+		  			current_user.referral_wallet = amount.abs / 100
+		  			amount = 0
+		  		else
+		  			current_user.referral_wallet = 0
+		  		end
+		  	end
 
-			if charge.paid 
-				payment = Payment.create(paymentable: project, user: current_user, amount: amount/100, stripe_charge_id: charge.id)
+			# Charge the user if amount > 0
+			if amount > 0
+			  	charge = Stripe::Charge.create(
+				    :amount => amount.to_i, # amount in cents, again
+				    :currency => "eur",
+					:source => params[:stripeToken],
+				  	:description => "Achat #{project.title} par #{current_user.email}",
+				  	:receipt_email => current_user.email
+				)
+			end
+
+			if amount == 0 || charge.paid
+				payment = Payment.new(paymentable: project, user: current_user, amount: amount/100)
+				payment.stripe_charge_id = charge.id if charge != nil				
+				if use_referral_code
+					payment.referral_code = referral_code
+
+					# Increase referral balance of 5€ for the referant
+					referent = User.where(referral_code: referral_code).first
+					if referent != nil
+						referent.referral_wallet += 5
+						referent.save
+						# TODO: Send an email to notify the increase
+					end
+				end
+				if use_referral_wallet
+					payment.referral_wallet_amount = project.price - (amount / 100)
+		  			current_user.save
+				end
+				payment.save
 		  		subscription = Subscription.create(subscriptionable: project, user: current_user)
-		  		flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants."
+				flash[:success] = "Paiement réussi ! Vous allez recevoir un email dans quelques instants." if charge != nil && charge.paid == true
+				flash[:success] = "Génial, vous avez bien obtenu la formation GRATUITEMENT !" if amount == 0
 		  	else
 		  		flash[:error] = "Une erreur est survenue pendant le paiement. Votre carte n'a pas été débitée."
 			end
