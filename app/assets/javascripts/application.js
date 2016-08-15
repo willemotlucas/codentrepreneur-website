@@ -24,5 +24,6 @@
 //= require stripe_payment
 //= require referral
 //= require free_project
+//= require jquery.barrating.min
 
 //= require turbolinks

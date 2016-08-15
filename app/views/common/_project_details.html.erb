@@ -71,7 +71,21 @@
 				  </div>
 
 				  <div class="tab-pane" id="ratings" role="tabpanel">
-				  	  <% @project.ratings.each do |rating| %>
+				  	  <% if user_signed_in? && !current_user.ratings.where(ratingable: @project).exists? && current_user.subscriptions.where(subscriptionable: @project).exists? %>
+				  	  <div class="row">
+					  	  <div class="col col-xs-12">
+					  	  		<%= form_for([@project, @rating], url: free_project_ratings_path(@project, @rating)) do |f| %>
+					  			<div class="form-group">
+					  				<%= f.label :comment, "Aidez la communauté en donnant votre avis" %>
+					  				<%= f.select :note, (1..5).map { |i| ["#{i}", i]}, {}, id: "rating-stars" %>
+					  				<%= f.text_area :comment, class: "form-control" %>
+					  			</div>
+					  			<%= f.submit "Donner mon avis", class: "btn btn-outline-success" %>
+					  			<% end %>
+					  	  </div>
+					  </div>
+					  <% end %>
+				  	  <% @project.ratings.order("created_at DESC").each do |rating| %>
 				  	  	<div class="row">
 						  <div class="col col-xs-12">
 						  	<div class="col col-xs-1"><%= image_tag gravatar_url(rating.user, 60), class: "img-circle img-responsive" %></div>
@@ -108,3 +122,12 @@
 		</div>
 	</div>
 </section>
+
+<script type="text/javascript">
+	$(function() {
+    	$('#rating-stars').barrating({
+    		theme: 'fontawesome-stars',
+    		initialRating: 5
+    	});
+	});
+</script>

@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations', sessions: 'sessions' }
 
   resources :free_project, only: [:show] do 
-	resources :step, only: [:show]
+	   resources :step, only: [:show]
+     resources :ratings, only: [:create]
   end
 
   resources :paid_project, only: [:show] do 
-	resources :step, only: [:show]
+	   resources :step, only: [:show]
+     resources :rating, only: [:create]
   end
 
   root to: "pages#index"
