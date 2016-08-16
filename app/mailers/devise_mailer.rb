@@ -15,6 +15,6 @@ class DeviseMailer < Devise::Mailer
   	@user = user
   	@reset_password_token = reset_password_token
 
-    mail to: user.email, subject: "Réinitialisation de votre mot de passe"
+    mail to: user.email, subject: "Réinitialisation de votre mot de passe sur Codentrepreneur"
   end
 end

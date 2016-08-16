@@ -57,7 +57,7 @@ class ChargesController < ApplicationController
 					if referent != nil
 						referent.referral_wallet += 5
 						referent.save
-						# TODO: Send an email to notify the increase
+						NotificationsMailer.notify_use_referral_code(current_user, referent).deliver_later
 					end
 				end
 				if use_referral_wallet
