@@ -5,8 +5,18 @@ class StepController < ApplicationController
 
 	def show
 		@project = @step.task.taskable
+		
 		@next_step = @step.task.steps.where("step_order > ?", @step.step_order).order("step_order ASC").first
+		if @next_step == nil
+			@next_task = @step.task.taskable.tasks.where("task_order > ?", @step.task.task_order).first
+			@next_step = @next_task.steps.order("step_order ASC").first if @next_task != nil
+		end
+
 		@previous_step = @step.task.steps.where("step_order < ?", @step.step_order).order("step_order DESC").first
+		if @previous_step == nil
+			@previous_task = @step.task.taskable.tasks.where("task_order < ?", @step.task.task_order).first
+			@previous_step = @previous_task.steps.order("step_order DESC").first if @previous_task != nil
+		end
 	end
 
 	private
