@@ -50,7 +50,50 @@
 	<%= yield %>		
 
     <footer>
-    	<!-- Put something -->
+    	<div class="container">
+	    	<div class="row">
+	    		<div class="col col-md-4 col-xs-12">
+	    			<div class="col col-md-6 col-xs-6">
+		    			<h5>Navigation</h5>
+		    			<%= link_to "Accueil", root_path %><br/>
+		    			<%= link_to "Projets", projects_path %><br/>
+		    			<% if user_signed_in? %>
+		    				<%= link_to "Mon compte", my_account_path %><br/>
+		    				<%= link_to "Mes projets", my_projects_path %><br/>
+		    			<% else %>
+			    			<%= link_to "Connexion", new_user_session_path %><br/>
+			    			<%= link_to "Inscription", new_user_registration_path %>
+			    		<% end %>
+	    			</div>
+		    		<div class="col col-md-6 col-xs-6">
+		    			<h5>Légal</h5>
+		    			<a href="">Politique de confidentialité</a> <br/>
+		    			<a href="">CGU</a>
+		    		</div>
+	    		</div>
+	    		<div class="col col-md-4 col-xs-12">
+	    			<div class="text-xs-center">
+		    			<h5>Suivez-nous sur</h5>
+		    			<a href="https://www.facebook.com/codentrepreneur/"><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i> </a>&nbsp;
+		    			<a href="https://twitter.com/clonestartup/"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i> </a>&nbsp;
+		    			<a href=""><i class="fa fa-linkedin fa-3x" aria-hidden="true"></i> </a> <br/><br/>
+		    			<p>Des formations gratuites sont à gagner !</p>
+		    		</div>
+	    		</div>
+	    		<div class="col col-md-3 col-md-offset-1 col-xs-12 text-xs-center">
+	    			<h5>Contact</h5>
+	    				<a href="">lucas@codentrepreneur.fr</a>
+	    				<p>Pour une réponse rapide, contactez-nous par <u><a href="">Messenger</a></u></p>
+	    		</div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="col col-md-12">
+	    			<div class="text-xs-center">
+	    				<p>Codentrepreneur, 2016. Tous droits réservés</p>
+	    			</div>
+	    		</div>
+	    	</div>
+    	</div>
     </footer>
 
     <%= javascript_include_tag 'navbar.js' %>
