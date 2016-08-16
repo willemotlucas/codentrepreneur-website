@@ -31,9 +31,10 @@
 	</div>
 </div>
 
+
 <div class="row">
 	<div class="col col-lg-12">
-		<h4>Projets non notés</h4>
+		<h4>Projets à noter</h4>
 		<div class="table-responsive">
 		  <table class="table">
 		    <thead class="thead-default">
@@ -47,7 +48,11 @@
 					<% if !current_user.ratings.where(ratingable_type: sub.subscriptionable_type, ratingable_id: sub.subscriptionable_id).exists? %>
 						<tr>
 							<td><%= sub.subscriptionable.title %></td>
-							<td><%= link_to "Noter", sub.subscriptionable %></td>
+							<% if sub.subscriptionable.is_a? FreeProject %>
+								<td><%= link_to "Donner mon avis", free_project_path(sub.subscriptionable, anchor: "ratings") %></td>
+							<% elsif sub.subscriptionable.is_a? PaidProject %>
+								<td><%= link_to "Donner mon avis", paid_project_path(sub.subscriptionable, anchor: "ratings") %></td>
+							<% end %>
 						</tr>
 					<% end %>
 				<% end %>

@@ -3,7 +3,7 @@
 		<div class="row">
 			<h1 class="text-xs-center"><%= @preorder_project.title %></h1>
 			<h3 class="text-xs-center">Pré-commandez le projet au prix de <%= @preorder_project.preorder_price %>€ seulement !</h3>
-			<div class="col col-sm-12 col-lg-9">
+			<div class="col col-xs-12 col-lg-9 push-xs-12">
 				<ul class="nav nav-tabs" role="tablist">
 				  <li class="nav-item">
 				    <a class="nav-link active" data-toggle="tab" href="#summary" role="tab">Résumé</a>
@@ -18,7 +18,7 @@
 				  </div>
 				</div>
 			</div>	
-			<div class="col col-xs-12 col-lg-3">
+			<div class="col col-xs-12 col-lg-3 pull-xs-12">
 				<div id="side-details" class="card card-block">
 				  <p class="card-text"><i class="fa fa-clock-o fa-1x" aria-hidden="true"></i> <%= @preorder_project.duration %> de formation vidéos</p>
 				  <p class="card-text"><i class="fa fa-calendar fa-1x" aria-hidden="true"></i> Disponible en <%= @preorder_project.release_date %></p>
@@ -30,12 +30,14 @@
 			      	<% if user_signed_in? && !Payment.where(paymentable: @preorder_project, user: current_user).exists? %>
 			      		<button class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-md">Précommander </br>la formation</button>
 			      	<% elsif user_signed_in? && Payment.where(paymentable: @preorder_project, user: current_user).exists? %>
-			      		<button class="btn btn-success" disabled>Formation déjà pré-commandée</button>
+			      		<button class="btn btn-success" disabled>Formation déjà <br/>pré-commandée</button>
 			      	<% else %>
 			      		<%= link_to "Précommander la formation", new_user_session_path, class: "btn btn-success" %>
 			      	<% end %>
 			      	</p>
-			      	<p class="card-price text-xs-center"><%= @preorder_project.quantity_remaining %> restantes</p>
+			      	<% if @preorder_project.quantity_remaining > 0 %>
+			      		<p class="card-price text-xs-center"><%= @preorder_project.quantity_remaining %> restantes</p>
+			      	<% end %>
 			      <% elsif @preorder_project.quantity_remaining == 0 %>
 					<p class="text-xs-center"><a href="#" class="btn btn-success disabled">Pré-commandes épuisées !</a></p>
 			      <% end %>

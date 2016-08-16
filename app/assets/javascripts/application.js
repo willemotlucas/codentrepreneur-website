@@ -17,7 +17,7 @@
 //= require tether
 //= require bootstrap
 //= require jquery-readyselector
-//= require_tree .
+
 //= require toastr
 //= require navbar
 //= require my_account
