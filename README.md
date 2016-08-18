@@ -19,12 +19,11 @@ That will install the version 5.0.0 of rails
 
 4. In the ruby console, type ```rails -v``` to check the version that has been installed
 
-5. Due to a mistake from RailsInstaller developer, you have to change a .bat file
+5. Due to a mistake from RailsInstaller developer, you have to change a ```.bat``` file
 	* Go on your ruby's ```bin/``` folder ```C:\RailsInstaller\Ruby2.2.0\bin``` by default
 	* Open bundle.bat with a text editor
 	* Delete the entire content of the file
 	* Copy and paste the following lines instead:
-
 ```
 @ECHO OFF
 IF NOT "%~f0" == "~f0" GOTO :WinNT
@@ -35,16 +34,13 @@ GOTO :EOF
 ```
 
 6. Go back in your ruby console, change your current directory to codentrepreneur/website folder
-and run ```gem install bundler``` to update bundler. Then run ```bundle install``` to install gems located in Gemfile
-
+and run ```gem install bundler``` to update bundler. Then run ```bundle install``` to install gems located in Gemfile.
 If you are facing an error telling there is a problem with SSL/TLS certificates, please follow [this short tutorial](https://gist.github.com/fnichol/867550) to install certificates on your system. Then, run ```bundle install``` again
 
 7. Voilà! Ruby and Ruby on Rails have just been installed on your computer.
-
 You can now clone the git project by using this URL with SourceTree : ```https://gitlab.utc.fr/codentrepreneur/website.git```
 
-8. Go on the Codentrepreneur project directory with your terminal, and run ```bundle install``` to install all the gem located in GemFile
-
+8. Go on the Codentrepreneur project directory with your terminal, and run ```bundle install``` to install all the gem located in GemFile.
 If there is any issue during this process, please contact your administrator.
 
 9. Finally, run ```rails s``` to launch the server located at [localhost:3000](http://localhost:3000)
