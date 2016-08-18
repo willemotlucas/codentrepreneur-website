@@ -34,16 +34,16 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
-  # config.action_mailer.smtp_settings = {
-  #   user_name:      'willemotlucas@gmail.com',
-  #   password:       '.1an=04*',
-  #   domain:         'localhost',
-  #   address:       "smtp.gmail.com",
-  #   port:          "587",
-  #   authentication: :plain,
-  #   enable_starttls_auto: true
-  # }
+  #config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
+  config.action_mailer.smtp_settings = {
+    user_name:      'willemotlucas@gmail.com',
+    password:       '.1an=04*',
+    domain:         'localhost',
+    address:       "smtp.gmail.com",
+    port:          "587",
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
