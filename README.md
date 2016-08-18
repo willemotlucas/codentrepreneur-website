@@ -7,9 +7,7 @@ Codentrepreneur website works with Ruby 2.2.0 and Rails 5.0.0
 # Installing your environment on Windows
 
 1. Intall ruby and rails on your system. You can use the installer available on [RailsInstaller.org](http://railsinstaller.org). 
-
 Make sure to download Ruby 2.2.4 . 
-
 For now, Rails 5.0.0 is not packaged inside this installer, so you need to updgrade it manually.
 
 2. Open a ruby console and run ```gem update --system```
