@@ -12,7 +12,6 @@ document.addEventListener("turbolinks:load", function() {
     function showRatingsTab(){
         var target = window.location.href.split('#');
         if(target[1]){
-            console.log(target[1]);
             $('.tab-pane').removeClass('active');
             $('a.nav-link.active').removeClass('active');
             $('#'+target[1]).addClass('active');

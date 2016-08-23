@@ -6,7 +6,7 @@
 			<p class="referral-wallet-sub">A utiliser quand vous voulez, sur le prochain achat d'une formation !</p>
 		<% end %>
 		<p>Votre code parrain à communiquer : <strong><%= current_user.referral_code %></strong></p>
-		<p>Vous gagnez 5€ dans votre cagnotte à chaque fois qu'une personne achète un cours avec votre code parrain.</p>
+		<p>Vous gagnez <%= Gon.global.referral_amount %>€ dans votre cagnotte à chaque fois qu'une personne achète un cours avec votre code parrain.</p>
 	</div>
 </div>
 
@@ -36,7 +36,7 @@
 		<% if @payments_as_referent.count == 0 %>
 			<div class="text-xs-center">
 				<p>Vous n'avez parrainé personne. <br/> <br/>
-				Communiquez votre code parrain <strong><%= current_user.referral_code %></strong> à vos amis et gagnez 5€ lorsqu'ils l'utilisent pour le paiement d'une formation !</p>
+				Communiquez votre code parrain <strong><%= current_user.referral_code %></strong> à vos amis et gagnez <%= Gon.global.referral_amount %>€ lorsqu'ils l'utilisent pour le paiement d'une formation !</p>
 			</div>
 		<% end %>
 	</div>

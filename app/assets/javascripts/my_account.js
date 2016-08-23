@@ -1,5 +1,4 @@
 $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-	console.log('click on tab');
     e.preventDefault();
     $(this).siblings('a.active').removeClass("active");
     $(this).addClass("active");

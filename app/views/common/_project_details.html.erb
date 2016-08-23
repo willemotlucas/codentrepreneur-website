@@ -74,14 +74,7 @@
 				  	  <% if user_signed_in? && !current_user.ratings.where(ratingable: @project).exists? && current_user.subscriptions.where(subscriptionable: @project).exists? %>
 				  	  <div class="row">
 					  	  <div class="col col-xs-12">
-					  	  		<%= form_for([@project, @rating], url: free_project_ratings_path(@project, @rating)) do |f| %>
-					  			<div class="form-group">
-					  				<%= f.label :comment, "Aidez la communauté en donnant votre avis" %>
-					  				<%= f.select :note, (1..5).map { |i| ["#{i}", i]}, {}, id: "rating-stars" %>
-					  				<%= f.text_area :comment, class: "form-control" %>
-					  			</div>
-					  			<%= f.submit "Donner mon avis", class: "btn btn-outline-success" %>
-					  			<% end %>
+					  	  	<%= render partial: "common/create_ratings" %>
 					  	  </div>
 					  </div>
 					  <% end %>

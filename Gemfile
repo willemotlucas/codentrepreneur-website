@@ -65,6 +65,9 @@ gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 # Stripe checkout plugin
 gem 'stripe'
 
+# Using gon to share data and global variable between Js and Rails
+gem 'gon'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

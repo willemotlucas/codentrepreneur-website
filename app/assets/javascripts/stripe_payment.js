@@ -20,7 +20,6 @@ document.addEventListener("turbolinks:load", function() {
 
 		  $(function() {
 		    var $form = $('#payment-form');
-		    console.log($form);
 		    $form.submit(function(event) {
 		      // Disable the submit button to prevent repeated clicks:
 		      $form.find('.payment-btn').prop('disabled', true);
@@ -64,8 +63,6 @@ document.addEventListener("turbolinks:load", function() {
 		    	} else if(response.error.param == "number"){
 		    		$(".row-card-number").addClass("has-danger");	
 		    	}
-
-		      console.log(response);
 
 		      $form.find('.payment-btn').prop('disabled', false); // Re-enable submission
 

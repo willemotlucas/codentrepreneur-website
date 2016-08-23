@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :paid_project, only: [:show] do 
 	   resources :step, only: [:show]
-     resources :rating, only: [:create]
+     resources :ratings, only: [:create]
   end
 
   root to: "pages#index"
