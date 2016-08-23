@@ -1,6 +1,15 @@
 document.addEventListener("turbolinks:load", function() {
   $(function(){
+
 	var original_price = parseFloat($('#project-price').html());
+
+	$('.fa-question-circle').popover({
+		title: 'Aide',
+		content: 'Pour <strong>Visa et MasterCard</strong>, le code de sécurité est composé des 3 derniers chiffres situés au dos de la carte. <br/> Pour <strong>American Express</strong>, le code de sécurité est composé des 4 chiffres sur le devant de la carte.',
+		position: 'top',
+		trigger: 'hover',
+		html: true
+	});
 
 	$('#apply-referral-code').on('click', function(){
 		if(!$(this).hasClass('disabled')){
@@ -22,7 +31,7 @@ document.addEventListener("turbolinks:load", function() {
 					console.log(response);
 				  	if(response.code == "referral_code_available"){
 				  		$('.form-inline-referral').addClass('has-success');
-				  		$(".project-price").html(parseFloat(original_price - 5));
+				  		$(".project-price").html(parseFloat(original_price - gon.global.referral_amount));
 				  		$('#apply-referral-code').addClass('disabled');
 				  		$('input[name="referral_code"]').prop('readonly', true);
 				  	} else {
@@ -54,7 +63,7 @@ document.addEventListener("turbolinks:load", function() {
 
 			$('input[name="use_referral_wallet"]').val('true');
 		}
-	})
+	});
 
 	function round(value, exp) {
 	  if (typeof exp === 'undefined' || +exp === 0)
