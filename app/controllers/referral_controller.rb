@@ -19,7 +19,7 @@ class ReferralController < ApplicationController
 		else
 			parrain = User.where(referral_code: params[:referral_code]).first
 			response[:code] = "referral_code_available"
-			response[:message] = "Vous économisez 5€ grâce à #{parrain.first_name} !"
+			response[:message] = "Vous économisez #{Gon.global.referral_amount}€ grâce à #{parrain.first_name} !"
 		end
 
 		respond_to do |format|

@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
 		  	use_referral_code = false
 		  	if !referral_code.blank? && is_valid_referral_code(referral_code)
 		  		use_referral_code = true
-		  		amount -= 500
+		  		amount -= Gon.global.referral_amount * 100
 		  	end
 
 		  	# Check if user use his referral amount
@@ -55,7 +55,7 @@ class ChargesController < ApplicationController
 					# Increase referral balance of 5€ for the referant
 					referent = User.where(referral_code: referral_code).first
 					if referent != nil
-						referent.referral_wallet += 5
+						referent.referral_wallet += Gon.global.referral_amount
 						referent.save
 						NotificationsMailer.notify_use_referral_code(current_user, referent).deliver_later
 					end
@@ -94,7 +94,7 @@ class ChargesController < ApplicationController
 		  	use_referral_code = false
 		  	if !referral_code.blank? && is_valid_referral_code(referral_code)
 		  		use_referral_code = true
-		  		amount -= 500
+		  		amount -= Gon.global.referral_amount * 100
 		  	end
 
 		  	# Check if user use his referral amount
@@ -129,7 +129,7 @@ class ChargesController < ApplicationController
 					# Increase referral balance of 5€ for the referant
 					referent = User.where(referral_code: referral_code).first
 					if referent != nil
-						referent.referral_wallet += 5
+						referent.referral_wallet += Gon.global.referral_amount
 						referent.save
 						# TODO: Send an email to notify the increase
 					end
